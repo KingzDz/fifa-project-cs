@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace FifaProject
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void registerAccountLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // send user to FIFA-project website where you can register
         }
     }
 }
