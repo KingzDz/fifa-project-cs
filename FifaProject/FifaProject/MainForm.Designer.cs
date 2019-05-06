@@ -29,25 +29,22 @@
         private void InitializeComponent()
         {
             this.matchsTitleLabel = new System.Windows.Forms.Label();
-            this.loginTitleLabel = new System.Windows.Forms.Label();
             this.betPanel = new System.Windows.Forms.Panel();
+            this.refreshButton = new System.Windows.Forms.Button();
             this.betButton = new System.Windows.Forms.Button();
-            this.colon1 = new System.Windows.Forms.Label();
-            this.scoreTeam2 = new System.Windows.Forms.TextBox();
-            this.scoreTeam1 = new System.Windows.Forms.TextBox();
-            this.teamLabel2 = new System.Windows.Forms.Label();
-            this.teamLabel1 = new System.Windows.Forms.Label();
             this.currentBalenceLabel = new System.Windows.Forms.Label();
             this.currentBalenceTitleLabel = new System.Windows.Forms.Label();
             this.matchesPanel = new System.Windows.Forms.Panel();
-            this.loginPanel = new System.Windows.Forms.Panel();
-            this.registerAccountLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.loginButton = new System.Windows.Forms.Button();
-            this.passwordTextBox = new System.Windows.Forms.TextBox();
-            this.usernameTextBox = new System.Windows.Forms.TextBox();
+            this.websiteLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.teamPanel = new System.Windows.Forms.Panel();
+            this.teamLabel1 = new System.Windows.Forms.Label();
+            this.teamLabel2 = new System.Windows.Forms.Label();
+            this.scoreTeam1 = new System.Windows.Forms.TextBox();
+            this.scoreTeam2 = new System.Windows.Forms.TextBox();
+            this.colon1 = new System.Windows.Forms.Label();
             this.betPanel.SuspendLayout();
             this.matchesPanel.SuspendLayout();
-            this.loginPanel.SuspendLayout();
+            this.teamPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // matchsTitleLabel
@@ -60,31 +57,28 @@
             this.matchsTitleLabel.TabIndex = 0;
             this.matchsTitleLabel.Text = "Wedstrijden";
             // 
-            // loginTitleLabel
-            // 
-            this.loginTitleLabel.AutoSize = true;
-            this.loginTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginTitleLabel.Location = new System.Drawing.Point(108, 42);
-            this.loginTitleLabel.Name = "loginTitleLabel";
-            this.loginTitleLabel.Size = new System.Drawing.Size(103, 26);
-            this.loginTitleLabel.TabIndex = 1;
-            this.loginTitleLabel.Text = "Inloggen";
-            // 
             // betPanel
             // 
             this.betPanel.BackColor = System.Drawing.Color.White;
+            this.betPanel.Controls.Add(this.teamPanel);
+            this.betPanel.Controls.Add(this.refreshButton);
             this.betPanel.Controls.Add(this.betButton);
-            this.betPanel.Controls.Add(this.colon1);
-            this.betPanel.Controls.Add(this.scoreTeam2);
-            this.betPanel.Controls.Add(this.scoreTeam1);
-            this.betPanel.Controls.Add(this.teamLabel2);
-            this.betPanel.Controls.Add(this.teamLabel1);
             this.betPanel.Controls.Add(this.currentBalenceLabel);
             this.betPanel.Controls.Add(this.currentBalenceTitleLabel);
             this.betPanel.Location = new System.Drawing.Point(59, 85);
             this.betPanel.Name = "betPanel";
             this.betPanel.Size = new System.Drawing.Size(338, 321);
             this.betPanel.TabIndex = 2;
+            // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(249, 15);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(75, 23);
+            this.refreshButton.TabIndex = 7;
+            this.refreshButton.Text = "Ververs";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
             // betButton
             // 
@@ -98,52 +92,6 @@
             this.betButton.TabIndex = 10;
             this.betButton.Text = "Wed";
             this.betButton.UseVisualStyleBackColor = false;
-            // 
-            // colon1
-            // 
-            this.colon1.AutoSize = true;
-            this.colon1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colon1.Location = new System.Drawing.Point(168, 64);
-            this.colon1.Name = "colon1";
-            this.colon1.Size = new System.Drawing.Size(12, 18);
-            this.colon1.TabIndex = 9;
-            this.colon1.Text = ":";
-            // 
-            // scoreTeam2
-            // 
-            this.scoreTeam2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreTeam2.Location = new System.Drawing.Point(186, 61);
-            this.scoreTeam2.Name = "scoreTeam2";
-            this.scoreTeam2.Size = new System.Drawing.Size(31, 24);
-            this.scoreTeam2.TabIndex = 8;
-            // 
-            // scoreTeam1
-            // 
-            this.scoreTeam1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreTeam1.Location = new System.Drawing.Point(131, 61);
-            this.scoreTeam1.Name = "scoreTeam1";
-            this.scoreTeam1.Size = new System.Drawing.Size(31, 24);
-            this.scoreTeam1.TabIndex = 7;
-            // 
-            // teamLabel2
-            // 
-            this.teamLabel2.AutoSize = true;
-            this.teamLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamLabel2.Location = new System.Drawing.Point(223, 64);
-            this.teamLabel2.Name = "teamLabel2";
-            this.teamLabel2.Size = new System.Drawing.Size(86, 18);
-            this.teamLabel2.TabIndex = 6;
-            this.teamLabel2.Text = "Team Twee";
-            // 
-            // teamLabel1
-            // 
-            this.teamLabel1.AutoSize = true;
-            this.teamLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamLabel1.Location = new System.Drawing.Point(16, 64);
-            this.teamLabel1.Name = "teamLabel1";
-            this.teamLabel1.Size = new System.Drawing.Size(76, 18);
-            this.teamLabel1.TabIndex = 5;
-            this.teamLabel1.Text = "Team Eén";
             // 
             // currentBalenceLabel
             // 
@@ -168,83 +116,98 @@
             // matchesPanel
             // 
             this.matchesPanel.BackColor = System.Drawing.Color.Silver;
+            this.matchesPanel.Controls.Add(this.websiteLinkLabel);
             this.matchesPanel.Controls.Add(this.betPanel);
             this.matchesPanel.Controls.Add(this.matchsTitleLabel);
-            this.matchesPanel.Enabled = false;
             this.matchesPanel.Location = new System.Drawing.Point(0, 0);
             this.matchesPanel.Name = "matchesPanel";
             this.matchesPanel.Size = new System.Drawing.Size(455, 450);
             this.matchesPanel.TabIndex = 3;
             // 
-            // loginPanel
+            // websiteLinkLabel
             // 
-            this.loginPanel.BackColor = System.Drawing.Color.Silver;
-            this.loginPanel.Controls.Add(this.registerAccountLinkLabel);
-            this.loginPanel.Controls.Add(this.loginButton);
-            this.loginPanel.Controls.Add(this.passwordTextBox);
-            this.loginPanel.Controls.Add(this.usernameTextBox);
-            this.loginPanel.Controls.Add(this.loginTitleLabel);
-            this.loginPanel.Location = new System.Drawing.Point(484, 0);
-            this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(316, 450);
-            this.loginPanel.TabIndex = 4;
+            this.websiteLinkLabel.AutoSize = true;
+            this.websiteLinkLabel.Location = new System.Drawing.Point(56, 419);
+            this.websiteLinkLabel.Name = "websiteLinkLabel";
+            this.websiteLinkLabel.Size = new System.Drawing.Size(282, 13);
+            this.websiteLinkLabel.TabIndex = 11;
+            this.websiteLinkLabel.TabStop = true;
+            this.websiteLinkLabel.Text = "Schema\'s bekijken, team\'s aanmaken? Check de website!";
+            this.websiteLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.websiteLinkLabel_LinkClicked);
             // 
-            // registerAccountLinkLabel
+            // teamPanel
             // 
-            this.registerAccountLinkLabel.AutoSize = true;
-            this.registerAccountLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.registerAccountLinkLabel.Location = new System.Drawing.Point(61, 405);
-            this.registerAccountLinkLabel.Name = "registerAccountLinkLabel";
-            this.registerAccountLinkLabel.Size = new System.Drawing.Size(210, 20);
-            this.registerAccountLinkLabel.TabIndex = 6;
-            this.registerAccountLinkLabel.TabStop = true;
-            this.registerAccountLinkLabel.Text = "Nog geen account? Klik hier!";
-            this.registerAccountLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.registerAccountLinkLabel_LinkClicked);
+            this.teamPanel.Controls.Add(this.teamLabel2);
+            this.teamPanel.Controls.Add(this.teamLabel1);
+            this.teamPanel.Controls.Add(this.scoreTeam1);
+            this.teamPanel.Controls.Add(this.colon1);
+            this.teamPanel.Controls.Add(this.scoreTeam2);
+            this.teamPanel.Location = new System.Drawing.Point(13, 41);
+            this.teamPanel.Name = "teamPanel";
+            this.teamPanel.Size = new System.Drawing.Size(311, 230);
+            this.teamPanel.TabIndex = 11;
             // 
-            // loginButton
+            // teamLabel1
             // 
-            this.loginButton.BackColor = System.Drawing.Color.Black;
-            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginButton.ForeColor = System.Drawing.Color.White;
-            this.loginButton.Location = new System.Drawing.Point(106, 241);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(110, 38);
-            this.loginButton.TabIndex = 4;
-            this.loginButton.Text = "Login";
-            this.loginButton.UseVisualStyleBackColor = false;
+            this.teamLabel1.AutoSize = true;
+            this.teamLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamLabel1.Location = new System.Drawing.Point(6, 10);
+            this.teamLabel1.Name = "teamLabel1";
+            this.teamLabel1.Size = new System.Drawing.Size(76, 18);
+            this.teamLabel1.TabIndex = 1;
+            this.teamLabel1.Text = "Team Eén";
             // 
-            // passwordTextBox
+            // teamLabel2
             // 
-            this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTextBox.Location = new System.Drawing.Point(57, 185);
-            this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(214, 29);
-            this.passwordTextBox.TabIndex = 3;
+            this.teamLabel2.AutoSize = true;
+            this.teamLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamLabel2.Location = new System.Drawing.Point(213, 10);
+            this.teamLabel2.Name = "teamLabel2";
+            this.teamLabel2.Size = new System.Drawing.Size(86, 18);
+            this.teamLabel2.TabIndex = 2;
+            this.teamLabel2.Text = "Team Twee";
             // 
-            // usernameTextBox
+            // scoreTeam1
             // 
-            this.usernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameTextBox.Location = new System.Drawing.Point(57, 122);
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(214, 29);
-            this.usernameTextBox.TabIndex = 2;
+            this.scoreTeam1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreTeam1.Location = new System.Drawing.Point(111, 7);
+            this.scoreTeam1.Name = "scoreTeam1";
+            this.scoreTeam1.Size = new System.Drawing.Size(31, 24);
+            this.scoreTeam1.TabIndex = 7;
+            // 
+            // scoreTeam2
+            // 
+            this.scoreTeam2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreTeam2.Location = new System.Drawing.Point(166, 7);
+            this.scoreTeam2.Name = "scoreTeam2";
+            this.scoreTeam2.Size = new System.Drawing.Size(31, 24);
+            this.scoreTeam2.TabIndex = 8;
+            // 
+            // colon1
+            // 
+            this.colon1.AutoSize = true;
+            this.colon1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colon1.Location = new System.Drawing.Point(148, 10);
+            this.colon1.Name = "colon1";
+            this.colon1.Size = new System.Drawing.Size(12, 18);
+            this.colon1.TabIndex = 9;
+            this.colon1.Text = ":";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.loginPanel);
+            this.ClientSize = new System.Drawing.Size(455, 450);
             this.Controls.Add(this.matchesPanel);
             this.Name = "MainForm";
             this.Text = "Gok applicatie";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.betPanel.ResumeLayout(false);
             this.betPanel.PerformLayout();
             this.matchesPanel.ResumeLayout(false);
             this.matchesPanel.PerformLayout();
-            this.loginPanel.ResumeLayout(false);
-            this.loginPanel.PerformLayout();
+            this.teamPanel.ResumeLayout(false);
+            this.teamPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -252,22 +215,19 @@
         #endregion
 
         private System.Windows.Forms.Label matchsTitleLabel;
-        private System.Windows.Forms.Label loginTitleLabel;
         private System.Windows.Forms.Panel betPanel;
         private System.Windows.Forms.Panel matchesPanel;
         private System.Windows.Forms.Label currentBalenceLabel;
         private System.Windows.Forms.Label currentBalenceTitleLabel;
-        private System.Windows.Forms.Label colon1;
-        private System.Windows.Forms.TextBox scoreTeam2;
-        private System.Windows.Forms.TextBox scoreTeam1;
+        private System.Windows.Forms.Button betButton;
+        private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.LinkLabel websiteLinkLabel;
+        private System.Windows.Forms.Panel teamPanel;
         private System.Windows.Forms.Label teamLabel2;
         private System.Windows.Forms.Label teamLabel1;
-        private System.Windows.Forms.Button betButton;
-        private System.Windows.Forms.Panel loginPanel;
-        private System.Windows.Forms.LinkLabel registerAccountLinkLabel;
-        private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.TextBox passwordTextBox;
-        private System.Windows.Forms.TextBox usernameTextBox;
+        private System.Windows.Forms.TextBox scoreTeam1;
+        private System.Windows.Forms.Label colon1;
+        private System.Windows.Forms.TextBox scoreTeam2;
     }
 }
 
