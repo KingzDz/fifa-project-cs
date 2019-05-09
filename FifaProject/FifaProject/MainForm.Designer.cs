@@ -30,21 +30,22 @@
         {
             this.matchsTitleLabel = new System.Windows.Forms.Label();
             this.betPanel = new System.Windows.Forms.Panel();
+            this.teamPanel = new System.Windows.Forms.Panel();
+            this.teamLabel2 = new System.Windows.Forms.Label();
+            this.teamLabel1 = new System.Windows.Forms.Label();
+            this.scoreTeam1 = new System.Windows.Forms.TextBox();
+            this.colon1 = new System.Windows.Forms.Label();
+            this.scoreTeam2 = new System.Windows.Forms.TextBox();
             this.refreshButton = new System.Windows.Forms.Button();
             this.betButton = new System.Windows.Forms.Button();
             this.currentBalenceLabel = new System.Windows.Forms.Label();
             this.currentBalenceTitleLabel = new System.Windows.Forms.Label();
             this.matchesPanel = new System.Windows.Forms.Panel();
             this.websiteLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.teamPanel = new System.Windows.Forms.Panel();
-            this.teamLabel1 = new System.Windows.Forms.Label();
-            this.teamLabel2 = new System.Windows.Forms.Label();
-            this.scoreTeam1 = new System.Windows.Forms.TextBox();
-            this.scoreTeam2 = new System.Windows.Forms.TextBox();
-            this.colon1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.betPanel.SuspendLayout();
-            this.matchesPanel.SuspendLayout();
             this.teamPanel.SuspendLayout();
+            this.matchesPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // matchsTitleLabel
@@ -69,6 +70,65 @@
             this.betPanel.Name = "betPanel";
             this.betPanel.Size = new System.Drawing.Size(338, 321);
             this.betPanel.TabIndex = 2;
+            // 
+            // teamPanel
+            // 
+            this.teamPanel.Controls.Add(this.textBox1);
+            this.teamPanel.Controls.Add(this.teamLabel2);
+            this.teamPanel.Controls.Add(this.teamLabel1);
+            this.teamPanel.Controls.Add(this.scoreTeam1);
+            this.teamPanel.Controls.Add(this.colon1);
+            this.teamPanel.Controls.Add(this.scoreTeam2);
+            this.teamPanel.Location = new System.Drawing.Point(13, 41);
+            this.teamPanel.Name = "teamPanel";
+            this.teamPanel.Size = new System.Drawing.Size(311, 230);
+            this.teamPanel.TabIndex = 11;
+            // 
+            // teamLabel2
+            // 
+            this.teamLabel2.AutoSize = true;
+            this.teamLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamLabel2.Location = new System.Drawing.Point(213, 10);
+            this.teamLabel2.Name = "teamLabel2";
+            this.teamLabel2.Size = new System.Drawing.Size(86, 18);
+            this.teamLabel2.TabIndex = 2;
+            this.teamLabel2.Text = "Team Twee";
+            // 
+            // teamLabel1
+            // 
+            this.teamLabel1.AutoSize = true;
+            this.teamLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamLabel1.Location = new System.Drawing.Point(6, 10);
+            this.teamLabel1.Name = "teamLabel1";
+            this.teamLabel1.Size = new System.Drawing.Size(76, 18);
+            this.teamLabel1.TabIndex = 1;
+            this.teamLabel1.Text = "Team Eén";
+            // 
+            // scoreTeam1
+            // 
+            this.scoreTeam1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreTeam1.Location = new System.Drawing.Point(111, 7);
+            this.scoreTeam1.Name = "scoreTeam1";
+            this.scoreTeam1.Size = new System.Drawing.Size(31, 24);
+            this.scoreTeam1.TabIndex = 7;
+            // 
+            // colon1
+            // 
+            this.colon1.AutoSize = true;
+            this.colon1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colon1.Location = new System.Drawing.Point(148, 10);
+            this.colon1.Name = "colon1";
+            this.colon1.Size = new System.Drawing.Size(12, 18);
+            this.colon1.TabIndex = 9;
+            this.colon1.Text = ":";
+            // 
+            // scoreTeam2
+            // 
+            this.scoreTeam2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreTeam2.Location = new System.Drawing.Point(166, 7);
+            this.scoreTeam2.Name = "scoreTeam2";
+            this.scoreTeam2.Size = new System.Drawing.Size(31, 24);
+            this.scoreTeam2.TabIndex = 8;
             // 
             // refreshButton
             // 
@@ -135,63 +195,13 @@
             this.websiteLinkLabel.Text = "Schema\'s bekijken, team\'s aanmaken? Check de website!";
             this.websiteLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.websiteLinkLabel_LinkClicked);
             // 
-            // teamPanel
+            // textBox1
             // 
-            this.teamPanel.Controls.Add(this.teamLabel2);
-            this.teamPanel.Controls.Add(this.teamLabel1);
-            this.teamPanel.Controls.Add(this.scoreTeam1);
-            this.teamPanel.Controls.Add(this.colon1);
-            this.teamPanel.Controls.Add(this.scoreTeam2);
-            this.teamPanel.Location = new System.Drawing.Point(13, 41);
-            this.teamPanel.Name = "teamPanel";
-            this.teamPanel.Size = new System.Drawing.Size(311, 230);
-            this.teamPanel.TabIndex = 11;
-            // 
-            // teamLabel1
-            // 
-            this.teamLabel1.AutoSize = true;
-            this.teamLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamLabel1.Location = new System.Drawing.Point(6, 10);
-            this.teamLabel1.Name = "teamLabel1";
-            this.teamLabel1.Size = new System.Drawing.Size(76, 18);
-            this.teamLabel1.TabIndex = 1;
-            this.teamLabel1.Text = "Team Eén";
-            // 
-            // teamLabel2
-            // 
-            this.teamLabel2.AutoSize = true;
-            this.teamLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamLabel2.Location = new System.Drawing.Point(213, 10);
-            this.teamLabel2.Name = "teamLabel2";
-            this.teamLabel2.Size = new System.Drawing.Size(86, 18);
-            this.teamLabel2.TabIndex = 2;
-            this.teamLabel2.Text = "Team Twee";
-            // 
-            // scoreTeam1
-            // 
-            this.scoreTeam1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreTeam1.Location = new System.Drawing.Point(111, 7);
-            this.scoreTeam1.Name = "scoreTeam1";
-            this.scoreTeam1.Size = new System.Drawing.Size(31, 24);
-            this.scoreTeam1.TabIndex = 7;
-            // 
-            // scoreTeam2
-            // 
-            this.scoreTeam2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreTeam2.Location = new System.Drawing.Point(166, 7);
-            this.scoreTeam2.Name = "scoreTeam2";
-            this.scoreTeam2.Size = new System.Drawing.Size(31, 24);
-            this.scoreTeam2.TabIndex = 8;
-            // 
-            // colon1
-            // 
-            this.colon1.AutoSize = true;
-            this.colon1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colon1.Location = new System.Drawing.Point(148, 10);
-            this.colon1.Name = "colon1";
-            this.colon1.Size = new System.Drawing.Size(12, 18);
-            this.colon1.TabIndex = 9;
-            this.colon1.Text = ":";
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(111, 37);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(0, 24);
+            this.textBox1.TabIndex = 11;
             // 
             // MainForm
             // 
@@ -204,10 +214,10 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.betPanel.ResumeLayout(false);
             this.betPanel.PerformLayout();
-            this.matchesPanel.ResumeLayout(false);
-            this.matchesPanel.PerformLayout();
             this.teamPanel.ResumeLayout(false);
             this.teamPanel.PerformLayout();
+            this.matchesPanel.ResumeLayout(false);
+            this.matchesPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -228,6 +238,7 @@
         private System.Windows.Forms.TextBox scoreTeam1;
         private System.Windows.Forms.Label colon1;
         private System.Windows.Forms.TextBox scoreTeam2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

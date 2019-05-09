@@ -15,7 +15,7 @@ namespace FifaProject
 {
     public partial class MainForm : Form
     {
-        string jsonTeams;
+        string json;
 
         public MainForm()
         {
@@ -25,6 +25,7 @@ namespace FifaProject
         private void refreshButton_Click(object sender, EventArgs e)
         {
             // When user clicks this button the teams must refresh
+            //initializeTeams();
         }
 
         private void websiteLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -32,7 +33,7 @@ namespace FifaProject
             Process.Start("https://sybrandbos.nl/website/");
         }
 
-        public async Task<string> fetchTeams()
+        /*public async Task fetchTeams()
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -42,64 +43,100 @@ namespace FifaProject
                     HttpResponseMessage response = await httpClient.GetAsync(url);
                     response.EnsureSuccessStatusCode();
 
-                    jsonTeams = await response.Content.ReadAsStringAsync();
-                    return jsonTeams;
+                    json = await response.Content.ReadAsStringAsync();
                 }
                 catch
                 {
-                    // iets ging mis 
-                    return "";
+                    // iets ging mis
+                    MessageBox.Show("Iets ging mis");
                 }
             }
-        }
+        }*/
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //string json = await fetchTeams();
-            string json = new System.Net.WebClient().DownloadString("https://sybrandbos.nl/website/API/read.php");
+            //var iets = fetchTeams();
+            
+            //iets.Wait();
+            initializeTeams();
+        }
+
+        public void initializeTeams()
+        {
+            json = new System.Net.WebClient().DownloadString("https://sybrandbos.nl/website/API/read.php");
 
             FetchTeam.RootObject fetchedTeams = JsonConvert.DeserializeObject<FetchTeam.RootObject>(json);
 
-            //List<FetchTeam.Record> teams = new List<FetchTeam.Record>();
-            
             // gets all labels from teamPanel
             var labelsVar = teamPanel.Controls.OfType<Label>();
-            // convert labels to list
+
+            // convert all teamLabels to a list
             List<Label> labels = new List<Label>();
             foreach (Label label in labelsVar)
             {
-                labels.Add(label);
+                if (!label.Text.Contains(":"))
+                {
+                    labels.Add(label);
+                }
             }
 
+            bool isLeftSide = true;
+            int locationY = teamLabel1.Location.Y;
+            int locationTextBoxY = scoreTeam1.Location.Y;
             int j = 0;
-            //foreach (FetchTeam.Record team in fetchedTeams.records)
+            int a = 2;
+
             List<FetchTeam.Record> team = fetchedTeams.records;
             for (int k = 0; k < team.Count(); k++)
             {
-                //foreach (Label label in labels)
                 for (; j < labels.Count(); j++, k++)
                 {
-                    // put all labels in an array
-                    if (!labels[j].Text.Contains(":"))
-                    {
-                        labels[j].Text = team[k].TeamName;
-                    }
+                    labels[j].Text = team[k].TeamName;
                 }
 
-                //teams.Add(team[k]);
-                
-                // get label from array
+                if (isLeftSide)
+                {
+                    Label teamLabel = new Label();
+                    teamLabel.AutoSize = true;
+                    teamLabel.Text = team[k].TeamName;
+                    teamLabel.Location = new System.Drawing.Point(6, locationY += 30);
+                    teamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    teamPanel.Controls.Add(teamLabel);
 
-                Label teamLabel = new Label();
-                teamLabel.Text = team[k].TeamName;
-                teamLabel.Location = new System.Drawing.Point(16, 64);
-                teamLabel.AutoSize = true;
-                this.Controls.Add(teamLabel);
-            }
-            
-            for (int i = 0; i < fetchedTeams.records.Count; i++)
-            {
-                //teamLabel1.Text = teams[i];
+                    // adding score section
+                    TextBox scoreTeam = new TextBox();
+                    scoreTeam.Size = new System.Drawing.Size(31, 24);
+                    scoreTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    scoreTeam.Location = new System.Drawing.Point(111, locationTextBoxY += 30);
+                    teamPanel.Controls.Add(scoreTeam);
+
+                    TextBox scoreTeam2 = new TextBox();
+                    scoreTeam2.Size = new System.Drawing.Size(31, 24);
+                    scoreTeam2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    scoreTeam2.Location = new System.Drawing.Point(166, locationTextBoxY);
+                    teamPanel.Controls.Add(scoreTeam2);
+
+                    Label colonLabel = new Label();
+                    colonLabel.AutoSize = true;
+                    colonLabel.Text = ":";
+                    colonLabel.Location = new System.Drawing.Point(148, locationY);
+                    colonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    teamPanel.Controls.Add(colonLabel);
+
+
+                    isLeftSide = false;
+                }
+                else
+                {
+                    Label teamLabel = new Label();
+                    teamLabel.AutoSize = true;
+                    teamLabel.Text = team[k].TeamName;
+                    teamLabel.Location = new System.Drawing.Point(213, locationY);
+                    teamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    teamPanel.Controls.Add(teamLabel);
+
+                    isLeftSide = true;
+                }
             }
         }
     }
