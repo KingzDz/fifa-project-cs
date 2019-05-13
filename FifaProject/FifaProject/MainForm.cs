@@ -16,6 +16,7 @@ namespace FifaProject
     public partial class MainForm : Form
     {
         string json;
+        List<Bettor> BettorList;
 
         public MainForm()
         {
@@ -138,6 +139,15 @@ namespace FifaProject
                     isLeftSide = true;
                 }
             }
+        }
+
+        private void newBettorButton_Click(object sender, EventArgs e)
+        {
+            BettorList = new List<Bettor>();
+            BettorForm form = new BettorForm();
+            form.ShowDialog();
+            Bettor NewBettor = form.NewBettor;
+            BettorList.Add(NewBettor);
         }
     }
 }

@@ -31,6 +31,7 @@
             this.matchsTitleLabel = new System.Windows.Forms.Label();
             this.betPanel = new System.Windows.Forms.Panel();
             this.teamPanel = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.teamLabel2 = new System.Windows.Forms.Label();
             this.teamLabel1 = new System.Windows.Forms.Label();
             this.scoreTeam1 = new System.Windows.Forms.TextBox();
@@ -42,7 +43,8 @@
             this.currentBalenceTitleLabel = new System.Windows.Forms.Label();
             this.matchesPanel = new System.Windows.Forms.Panel();
             this.websiteLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.newBettorButton = new System.Windows.Forms.Button();
             this.betPanel.SuspendLayout();
             this.teamPanel.SuspendLayout();
             this.matchesPanel.SuspendLayout();
@@ -52,7 +54,7 @@
             // 
             this.matchsTitleLabel.AutoSize = true;
             this.matchsTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.matchsTitleLabel.Location = new System.Drawing.Point(138, 42);
+            this.matchsTitleLabel.Location = new System.Drawing.Point(134, 36);
             this.matchsTitleLabel.Name = "matchsTitleLabel";
             this.matchsTitleLabel.Size = new System.Drawing.Size(138, 26);
             this.matchsTitleLabel.TabIndex = 0;
@@ -61,6 +63,7 @@
             // betPanel
             // 
             this.betPanel.BackColor = System.Drawing.Color.White;
+            this.betPanel.Controls.Add(this.newBettorButton);
             this.betPanel.Controls.Add(this.teamPanel);
             this.betPanel.Controls.Add(this.refreshButton);
             this.betPanel.Controls.Add(this.betButton);
@@ -83,6 +86,14 @@
             this.teamPanel.Name = "teamPanel";
             this.teamPanel.Size = new System.Drawing.Size(311, 230);
             this.teamPanel.TabIndex = 11;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(111, 37);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(0, 24);
+            this.textBox1.TabIndex = 11;
             // 
             // teamLabel2
             // 
@@ -146,7 +157,7 @@
             this.betButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.betButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.betButton.ForeColor = System.Drawing.Color.White;
-            this.betButton.Location = new System.Drawing.Point(119, 277);
+            this.betButton.Location = new System.Drawing.Point(13, 277);
             this.betButton.Name = "betButton";
             this.betButton.Size = new System.Drawing.Size(94, 28);
             this.betButton.TabIndex = 10;
@@ -195,13 +206,19 @@
             this.websiteLinkLabel.Text = "Schema\'s bekijken, team\'s aanmaken? Check de website!";
             this.websiteLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.websiteLinkLabel_LinkClicked);
             // 
-            // textBox1
+            // newBettorButton
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(111, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(0, 24);
-            this.textBox1.TabIndex = 11;
+            this.newBettorButton.BackColor = System.Drawing.Color.Black;
+            this.newBettorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newBettorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newBettorButton.ForeColor = System.Drawing.Color.White;
+            this.newBettorButton.Location = new System.Drawing.Point(219, 277);
+            this.newBettorButton.Name = "newBettorButton";
+            this.newBettorButton.Size = new System.Drawing.Size(105, 28);
+            this.newBettorButton.TabIndex = 12;
+            this.newBettorButton.Text = "Nieuwe Gokker";
+            this.newBettorButton.UseVisualStyleBackColor = false;
+            this.newBettorButton.Click += new System.EventHandler(this.newBettorButton_Click);
             // 
             // MainForm
             // 
@@ -239,6 +256,8 @@
         private System.Windows.Forms.Label colon1;
         private System.Windows.Forms.TextBox scoreTeam2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button newBettorButton;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
