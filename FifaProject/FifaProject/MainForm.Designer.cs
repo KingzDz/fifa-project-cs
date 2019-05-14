@@ -30,6 +30,7 @@
         {
             this.matchsTitleLabel = new System.Windows.Forms.Label();
             this.betPanel = new System.Windows.Forms.Panel();
+            this.newBettorButton = new System.Windows.Forms.Button();
             this.teamPanel = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.teamLabel2 = new System.Windows.Forms.Label();
@@ -44,7 +45,7 @@
             this.matchesPanel = new System.Windows.Forms.Panel();
             this.websiteLinkLabel = new System.Windows.Forms.LinkLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.newBettorButton = new System.Windows.Forms.Button();
+            this.scheduleButton = new System.Windows.Forms.Button();
             this.betPanel.SuspendLayout();
             this.teamPanel.SuspendLayout();
             this.matchesPanel.SuspendLayout();
@@ -63,6 +64,7 @@
             // betPanel
             // 
             this.betPanel.BackColor = System.Drawing.Color.White;
+            this.betPanel.Controls.Add(this.scheduleButton);
             this.betPanel.Controls.Add(this.newBettorButton);
             this.betPanel.Controls.Add(this.teamPanel);
             this.betPanel.Controls.Add(this.refreshButton);
@@ -73,6 +75,20 @@
             this.betPanel.Name = "betPanel";
             this.betPanel.Size = new System.Drawing.Size(338, 321);
             this.betPanel.TabIndex = 2;
+            // 
+            // newBettorButton
+            // 
+            this.newBettorButton.BackColor = System.Drawing.Color.Black;
+            this.newBettorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newBettorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newBettorButton.ForeColor = System.Drawing.Color.White;
+            this.newBettorButton.Location = new System.Drawing.Point(219, 277);
+            this.newBettorButton.Name = "newBettorButton";
+            this.newBettorButton.Size = new System.Drawing.Size(105, 28);
+            this.newBettorButton.TabIndex = 12;
+            this.newBettorButton.Text = "Nieuwe Gokker";
+            this.newBettorButton.UseVisualStyleBackColor = false;
+            this.newBettorButton.Click += new System.EventHandler(this.newBettorButton_Click);
             // 
             // teamPanel
             // 
@@ -206,19 +222,15 @@
             this.websiteLinkLabel.Text = "Schema\'s bekijken, team\'s aanmaken? Check de website!";
             this.websiteLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.websiteLinkLabel_LinkClicked);
             // 
-            // newBettorButton
+            // scheduleButton
             // 
-            this.newBettorButton.BackColor = System.Drawing.Color.Black;
-            this.newBettorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newBettorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newBettorButton.ForeColor = System.Drawing.Color.White;
-            this.newBettorButton.Location = new System.Drawing.Point(219, 277);
-            this.newBettorButton.Name = "newBettorButton";
-            this.newBettorButton.Size = new System.Drawing.Size(105, 28);
-            this.newBettorButton.TabIndex = 12;
-            this.newBettorButton.Text = "Nieuwe Gokker";
-            this.newBettorButton.UseVisualStyleBackColor = false;
-            this.newBettorButton.Click += new System.EventHandler(this.newBettorButton_Click);
+            this.scheduleButton.Location = new System.Drawing.Point(124, 277);
+            this.scheduleButton.Name = "scheduleButton";
+            this.scheduleButton.Size = new System.Drawing.Size(75, 23);
+            this.scheduleButton.TabIndex = 13;
+            this.scheduleButton.Text = "button1";
+            this.scheduleButton.UseVisualStyleBackColor = true;
+            this.scheduleButton.Click += new System.EventHandler(this.scheduleButton_Click);
             // 
             // MainForm
             // 
@@ -258,6 +270,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button newBettorButton;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button scheduleButton;
     }
 }
 

@@ -18,6 +18,8 @@ namespace FifaProject
         string json;
         List<Bettor> BettorList;
 
+        List<Label> labels;
+
         public MainForm()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace FifaProject
         {
             // When user clicks this button the teams must refresh
             //initializeTeams();
+            
         }
 
         private void websiteLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -72,7 +75,7 @@ namespace FifaProject
             var labelsVar = teamPanel.Controls.OfType<Label>();
 
             // convert all teamLabels to a list
-            List<Label> labels = new List<Label>();
+            labels = new List<Label>();
             foreach (Label label in labelsVar)
             {
                 if (!label.Text.Contains(":"))
@@ -148,6 +151,16 @@ namespace FifaProject
             form.ShowDialog();
             Bettor NewBettor = form.NewBettor;
             BettorList.Add(NewBettor);
+        }
+
+        private void scheduleButton_Click(object sender, EventArgs e)
+        {
+            System.Net.WebClient client = new System.Net.WebClient();
+
+            string schedule = client.DownloadString("https://sybrandbos.nl/website/API/schedules.php");
+            string fetchedSchedule = JsonConvert.DeserializeObject<string>(schedule);
+
+            MessageBox.Show(fetchedSchedule);
         }
     }
 }
