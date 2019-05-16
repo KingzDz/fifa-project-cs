@@ -56,6 +56,7 @@
     <Compile Include="BettorForm.Designer.cs">
       <DependentUpon>BettorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FetchSchedule.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

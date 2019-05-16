@@ -30,6 +30,7 @@
         {
             this.matchsTitleLabel = new System.Windows.Forms.Label();
             this.betPanel = new System.Windows.Forms.Panel();
+            this.scheduleButton = new System.Windows.Forms.Button();
             this.newBettorButton = new System.Windows.Forms.Button();
             this.teamPanel = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -45,7 +46,6 @@
             this.matchesPanel = new System.Windows.Forms.Panel();
             this.websiteLinkLabel = new System.Windows.Forms.LinkLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.scheduleButton = new System.Windows.Forms.Button();
             this.betPanel.SuspendLayout();
             this.teamPanel.SuspendLayout();
             this.matchesPanel.SuspendLayout();
@@ -75,6 +75,20 @@
             this.betPanel.Name = "betPanel";
             this.betPanel.Size = new System.Drawing.Size(338, 321);
             this.betPanel.TabIndex = 2;
+            // 
+            // scheduleButton
+            // 
+            this.scheduleButton.BackColor = System.Drawing.Color.Black;
+            this.scheduleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.scheduleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scheduleButton.ForeColor = System.Drawing.Color.White;
+            this.scheduleButton.Location = new System.Drawing.Point(124, 277);
+            this.scheduleButton.Name = "scheduleButton";
+            this.scheduleButton.Size = new System.Drawing.Size(75, 28);
+            this.scheduleButton.TabIndex = 13;
+            this.scheduleButton.Text = "Schema";
+            this.scheduleButton.UseVisualStyleBackColor = false;
+            this.scheduleButton.Click += new System.EventHandler(this.scheduleButton_Click);
             // 
             // newBettorButton
             // 
@@ -216,21 +230,11 @@
             this.websiteLinkLabel.AutoSize = true;
             this.websiteLinkLabel.Location = new System.Drawing.Point(56, 419);
             this.websiteLinkLabel.Name = "websiteLinkLabel";
-            this.websiteLinkLabel.Size = new System.Drawing.Size(282, 13);
+            this.websiteLinkLabel.Size = new System.Drawing.Size(191, 13);
             this.websiteLinkLabel.TabIndex = 11;
             this.websiteLinkLabel.TabStop = true;
-            this.websiteLinkLabel.Text = "Schema\'s bekijken, team\'s aanmaken? Check de website!";
+            this.websiteLinkLabel.Text = "Team\'s aanmaken? Check de website!";
             this.websiteLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.websiteLinkLabel_LinkClicked);
-            // 
-            // scheduleButton
-            // 
-            this.scheduleButton.Location = new System.Drawing.Point(124, 277);
-            this.scheduleButton.Name = "scheduleButton";
-            this.scheduleButton.Size = new System.Drawing.Size(75, 23);
-            this.scheduleButton.TabIndex = 13;
-            this.scheduleButton.Text = "button1";
-            this.scheduleButton.UseVisualStyleBackColor = true;
-            this.scheduleButton.Click += new System.EventHandler(this.scheduleButton_Click);
             // 
             // MainForm
             // 

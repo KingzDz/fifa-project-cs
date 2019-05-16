@@ -16,6 +16,7 @@ namespace FifaProject
     public partial class MainForm : Form
     {
         string json;
+        string fullSchedule;
         List<Bettor> BettorList;
 
         List<Label> labels;
@@ -157,10 +158,17 @@ namespace FifaProject
         {
             System.Net.WebClient client = new System.Net.WebClient();
 
-            string schedule = client.DownloadString("https://sybrandbos.nl/website/API/schedules.php");
-            string fetchedSchedule = JsonConvert.DeserializeObject<string>(schedule);
+            string read = client.DownloadString("https://sybrandbos.nl/website/API/schedules.php");
+            FetchSchedule fetchedSchedule = JsonConvert.DeserializeObject<FetchSchedule>(read);
 
-            MessageBox.Show(fetchedSchedule);
+            fullSchedule = "";
+
+            for (int i = 0; i < fetchedSchedule.matches.Count; i++)
+            {
+                fullSchedule += fetchedSchedule.matches[i] + "\n";
+            }
+
+            MessageBox.Show(fullSchedule);
         }
     }
 }
