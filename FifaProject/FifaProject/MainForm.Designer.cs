@@ -31,7 +31,7 @@
             this.matchsTitleLabel = new System.Windows.Forms.Label();
             this.betPanel = new System.Windows.Forms.Panel();
             this.scheduleButton = new System.Windows.Forms.Button();
-            this.newBettorButton = new System.Windows.Forms.Button();
+            this.betMenuButton = new System.Windows.Forms.Button();
             this.teamPanel = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.teamLabel2 = new System.Windows.Forms.Label();
@@ -65,7 +65,7 @@
             // 
             this.betPanel.BackColor = System.Drawing.Color.White;
             this.betPanel.Controls.Add(this.scheduleButton);
-            this.betPanel.Controls.Add(this.newBettorButton);
+            this.betPanel.Controls.Add(this.betMenuButton);
             this.betPanel.Controls.Add(this.teamPanel);
             this.betPanel.Controls.Add(this.refreshButton);
             this.betPanel.Controls.Add(this.betButton);
@@ -90,19 +90,19 @@
             this.scheduleButton.UseVisualStyleBackColor = false;
             this.scheduleButton.Click += new System.EventHandler(this.scheduleButton_Click);
             // 
-            // newBettorButton
+            // betMenuButton
             // 
-            this.newBettorButton.BackColor = System.Drawing.Color.Black;
-            this.newBettorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newBettorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newBettorButton.ForeColor = System.Drawing.Color.White;
-            this.newBettorButton.Location = new System.Drawing.Point(219, 277);
-            this.newBettorButton.Name = "newBettorButton";
-            this.newBettorButton.Size = new System.Drawing.Size(105, 28);
-            this.newBettorButton.TabIndex = 12;
-            this.newBettorButton.Text = "Nieuwe Gokker";
-            this.newBettorButton.UseVisualStyleBackColor = false;
-            this.newBettorButton.Click += new System.EventHandler(this.newBettorButton_Click);
+            this.betMenuButton.BackColor = System.Drawing.Color.Black;
+            this.betMenuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.betMenuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.betMenuButton.ForeColor = System.Drawing.Color.White;
+            this.betMenuButton.Location = new System.Drawing.Point(219, 277);
+            this.betMenuButton.Name = "betMenuButton";
+            this.betMenuButton.Size = new System.Drawing.Size(105, 28);
+            this.betMenuButton.TabIndex = 12;
+            this.betMenuButton.Text = "Gok Menu";
+            this.betMenuButton.UseVisualStyleBackColor = false;
+            this.betMenuButton.Click += new System.EventHandler(this.betMenuButton_Click);
             // 
             // teamPanel
             // 
@@ -272,7 +272,7 @@
         private System.Windows.Forms.Label colon1;
         private System.Windows.Forms.TextBox scoreTeam2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button newBettorButton;
+        private System.Windows.Forms.Button betMenuButton;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button scheduleButton;
     }

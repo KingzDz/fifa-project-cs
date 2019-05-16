@@ -17,9 +17,9 @@ namespace FifaProject
     {
         string json;
         string fullSchedule;
-        List<Bettor> BettorList;
 
         List<Label> labels;
+        List<FetchTeam.Record> team;
 
         public MainForm()
         {
@@ -91,7 +91,7 @@ namespace FifaProject
             int j = 0;
             int a = 2;
 
-            List<FetchTeam.Record> team = fetchedTeams.records;
+            team = fetchedTeams.records;
             for (int k = 0; k < team.Count(); k++)
             {
                 for (; j < labels.Count(); j++, k++)
@@ -145,30 +145,41 @@ namespace FifaProject
             }
         }
 
-        private void newBettorButton_Click(object sender, EventArgs e)
+        private void betMenuButton_Click(object sender, EventArgs e)
         {
-            BettorList = new List<Bettor>();
-            BettorForm form = new BettorForm();
-            form.ShowDialog();
-            Bettor NewBettor = form.NewBettor;
-            BettorList.Add(NewBettor);
+            BetMenuForm betForm = new BetMenuForm();
+            List<string> TeamList = new List<string>();
+            for (int i = 0; i < team.Count; i++)
+            {
+                TeamList.Add(team[i].TeamName);
+            }
+            betForm.TeamList = TeamList;
+            betForm.Show();
         }
 
         private void scheduleButton_Click(object sender, EventArgs e)
         {
             System.Net.WebClient client = new System.Net.WebClient();
 
-            string read = client.DownloadString("https://sybrandbos.nl/website/API/schedules.php");
-            FetchSchedule fetchedSchedule = JsonConvert.DeserializeObject<FetchSchedule>(read);
-
-            fullSchedule = "";
-
-            for (int i = 0; i < fetchedSchedule.matches.Count; i++)
+            try
             {
-                fullSchedule += fetchedSchedule.matches[i] + "\n";
-            }
+                string read = client.DownloadString("https://sybrandbos.nl/website/API/schedules.php");
+                FetchSchedule fetchedSchedule = JsonConvert.DeserializeObject<FetchSchedule>(read);
 
-            MessageBox.Show(fullSchedule);
+                fullSchedule = "";
+
+                for (int i = 0; i < fetchedSchedule.matches.Count; i++)
+                {
+                    fullSchedule += fetchedSchedule.matches[i] + "\n";
+                }
+
+                MessageBox.Show(fullSchedule);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Er is een fout opgetreden. Er kon geen verbinding worden gemaakt met de website!");
+            }
+            
         }
     }
 }
