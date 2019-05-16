@@ -23,6 +23,8 @@ namespace FifaProject
         private void Initialize()
         {
             bettorListTextBox.Text = "";
+            bettorComboBox.Items.Clear();
+            teamsComboBox.Items.Clear();
 
             if (BettorList.Count > 0)
             {
@@ -36,7 +38,6 @@ namespace FifaProject
             {
                 teamsComboBox.Items.Add(TeamList[i]);
             }
-            label1.Text = TeamList.Count.ToString();
         }
 
         private void newBettorButton_Click(object sender, EventArgs e)
@@ -54,8 +55,20 @@ namespace FifaProject
 
         private void BetMenuForm_Load(object sender, EventArgs e)
         {
-            TeamList = new List<string>();
             BettorList = new List<Bettor>();
+            Initialize();
+        }
+
+        private void betButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < BettorList.Count; i++)
+            {
+                if (bettorComboBox.Text == BettorList[i].Name)
+                {
+                    BettorList[i].CurrentBet = int.Parse(betTextBox.Text);
+                    BettorList[i].TeamBetOn = teamsComboBox.Text;
+                }
+            }
             Initialize();
         }
     }
