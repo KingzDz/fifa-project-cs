@@ -20,6 +20,7 @@ namespace FifaProject
 
         List<Label> labels;
         List<FetchTeam.Record> team;
+        FetchSchedule fetchedSchedule;
 
         public MainForm()
         {
@@ -64,11 +65,15 @@ namespace FifaProject
             
             //iets.Wait();
             initializeTeams();
+
+            System.Net.WebClient client = new System.Net.WebClient();
+            string read = client.DownloadString("http://localhost/website/API/schedules.php");
+            fetchedSchedule = JsonConvert.DeserializeObject<FetchSchedule>(read);
         }
 
         public void initializeTeams()
         {
-            json = new System.Net.WebClient().DownloadString("https://sybrandbos.nl/website/API/read.php");
+            json = new System.Net.WebClient().DownloadString("http://sybrandbos.nl/website/API/read.php?key=J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3");
 
             FetchTeam.RootObject fetchedTeams = JsonConvert.DeserializeObject<FetchTeam.RootObject>(json);
 
@@ -154,18 +159,14 @@ namespace FifaProject
                 TeamList.Add(team[i].TeamName);
             }
             betForm.TeamList = TeamList;
+            betForm.Schedule = fetchedSchedule.matches;
             betForm.Show();
         }
 
         private void scheduleButton_Click(object sender, EventArgs e)
         {
-            System.Net.WebClient client = new System.Net.WebClient();
-
             try
             {
-                string read = client.DownloadString("https://sybrandbos.nl/website/API/schedules.php");
-                FetchSchedule fetchedSchedule = JsonConvert.DeserializeObject<FetchSchedule>(read);
-
                 fullSchedule = "";
 
                 for (int i = 0; i < fetchedSchedule.matches.Count; i++)
