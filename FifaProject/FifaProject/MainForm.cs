@@ -67,7 +67,7 @@ namespace FifaProject
             initializeTeams();
 
             System.Net.WebClient client = new System.Net.WebClient();
-            string read = client.DownloadString("http://localhost/website/API/schedules.php");
+            string read = client.DownloadString("http://sybrandbos.nl/website/API/schedules.php");
             fetchedSchedule = JsonConvert.DeserializeObject<FetchSchedule>(read);
         }
 
