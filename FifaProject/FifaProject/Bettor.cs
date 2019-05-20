@@ -11,6 +11,7 @@ namespace FifaProject
         public string Name { get; set; }
         public int Cash{ get; set; }
         public int CurrentBet { get; set; }
+        public string Score { get; set; }
         public string TeamBetOn { get; set; }
 
         public Bettor(string name, int cash)

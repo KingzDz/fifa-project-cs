@@ -32,7 +32,6 @@ namespace FifaProject
 
         private void Initialize()
         {
-            bettorListTextBox.Text = "";
             bettorComboBox.Items.Clear();
             teamsComboBox.Items.Clear();
 
@@ -40,7 +39,6 @@ namespace FifaProject
             {
                 for (int i = 0; i < BettorList.Count; i++)
                 {
-                    bettorListTextBox.Text += BettorList[i].Name + " wed " + BettorList[i].CurrentBet + " euro op " + BettorList[i].TeamBetOn + " | " + BettorList[i].Cash + " Euro" + "\n";
                     bettorComboBox.Items.Add(BettorList[i].Name);
                 }
             }
@@ -97,8 +95,21 @@ namespace FifaProject
 
         private void betButton_Click(object sender, EventArgs e)
         {
-            string scoreTeam1 = scoreTextBox1.Text;
-            string scoreTeam2 = scoreTextBox2.Text;
+            string scoreTeam1 = "";
+            string scoreTeam2 = "";
+
+            if (String.IsNullOrEmpty(scoreTextBox1.Text) || String.IsNullOrEmpty(scoreTextBox2.Text))
+            {
+                MessageBox.Show("Sorry, score mag niet leeg zijn");
+            }
+
+            if (scoreTextBox1.Text.All(char.IsDigit) == true && scoreTextBox2.Text.All(char.IsDigit) == true)
+            {
+                scoreTeam1 = scoreTextBox1.Text;
+                scoreTeam2 = scoreTextBox2.Text;
+            }
+
+            
             int cash = int.Parse(euroTextBox.Text);
             string winningTeam = teamsComboBox.Text;
 
@@ -109,24 +120,28 @@ namespace FifaProject
                 return;
             }
 
-            for (int i = 0; i < BettorList.Count; i++)
+            activeBettor.Score = $"{scoreTeam1}-{scoreTeam2}";
+            
+            if(euroTextBox.Text.All(char.IsDigit) == true)
             {
-                if (bettorComboBox.Text == BettorList[i].Name)
-                {
-                    if(scoreTextBox1.Text.All(char.IsDigit) == true)
-                    {
-                        BettorList[i].CurrentBet = int.Parse(scoreTextBox1.Text);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Geef alleen cijfers mee.");
-                    }
-                    BettorList[i].TeamBetOn = teamsComboBox.Text;
-                }
+                activeBettor.CurrentBet = int.Parse(euroTextBox.Text);
             }
+            else
+            {
+                MessageBox.Show("Geef alleen cijfers mee.");
+            }
+
+            activeBettor.TeamBetOn = teamsComboBox.Text;
+
+            // Shows bet in bettorListTextBox
+            bettorListTextBox.Text += activeBettor.Name + " wed " + activeBettor.CurrentBet + " euro op " + activeBettor.TeamBetOn + " | Stand: " + activeBettor.Score + "\n";
+
+            // Resets textboxes
             bettorComboBox.Text = "";
             scoreTextBox1.Text = "";
+            scoreTextBox2.Text = "";
             teamsComboBox.Text = "";
+            euroTextBox.Text = "";
             Initialize();
         }
 
