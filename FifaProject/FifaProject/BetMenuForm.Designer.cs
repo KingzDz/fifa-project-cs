@@ -39,6 +39,8 @@
             this.bettorListTextBox = new System.Windows.Forms.RichTextBox();
             this.newBettorButton = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.newGameButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -163,12 +165,42 @@
             this.titleLabel.TabIndex = 1;
             this.titleLabel.Text = "Gok Menu";
             // 
+            // saveButton
+            // 
+            this.saveButton.BackColor = System.Drawing.Color.White;
+            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButton.ForeColor = System.Drawing.Color.Black;
+            this.saveButton.Location = new System.Drawing.Point(29, 423);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 11;
+            this.saveButton.Text = "Opslaan";
+            this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // newGameButton
+            // 
+            this.newGameButton.BackColor = System.Drawing.Color.White;
+            this.newGameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newGameButton.ForeColor = System.Drawing.Color.Black;
+            this.newGameButton.Location = new System.Drawing.Point(576, 423);
+            this.newGameButton.Name = "newGameButton";
+            this.newGameButton.Size = new System.Drawing.Size(89, 23);
+            this.newGameButton.TabIndex = 12;
+            this.newGameButton.Text = "Nieuw Spel";
+            this.newGameButton.UseVisualStyleBackColor = false;
+            this.newGameButton.Click += new System.EventHandler(this.newGameButton_Click);
+            // 
             // BetMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(694, 450);
+            this.Controls.Add(this.newGameButton);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.panel1);
             this.Name = "BetMenuForm";
@@ -194,5 +226,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox teamsComboBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button newGameButton;
     }
 }

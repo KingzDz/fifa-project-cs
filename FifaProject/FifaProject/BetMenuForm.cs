@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace FifaProject
 {
@@ -17,6 +19,8 @@ namespace FifaProject
         public List<string> Schedule;
         public string TeamOne;
         public string TeamTwo;
+
+        public string SaveLocation = "fifa-save.json";
 
         int MatchId = 0;
 
@@ -53,6 +57,7 @@ namespace FifaProject
         private void newBettorButton_Click(object sender, EventArgs e)
         {           
             BettorForm form = new BettorForm();
+            form.BettorList = BettorList;
             form.ShowDialog();
             Bettor NewBettor = form.NewBettor;
             if (NewBettor != null)
@@ -65,10 +70,20 @@ namespace FifaProject
 
         private void BetMenuForm_Load(object sender, EventArgs e)
         {
-            BettorList = new List<Bettor>();
+            string saveJson = File.ReadAllText(SaveLocation);
+
+            if(saveJson != "")
+            {
+                BettorList = JsonConvert.DeserializeObject<List<Bettor>>(saveJson);
+            }
+            else
+            {
+                BettorList = new List<Bettor>();
+            }
+
             FindTeams();
             Initialize();
-            
+
         }
 
         private void betButton_Click(object sender, EventArgs e)
@@ -88,7 +103,23 @@ namespace FifaProject
                     BettorList[i].TeamBetOn = teamsComboBox.Text;
                 }
             }
+            bettorComboBox.Text = "";
+            betTextBox.Text = "";
+            teamsComboBox.Text = "";
             Initialize();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            string SaveData = JsonConvert.SerializeObject(BettorList);
+            File.WriteAllText(SaveLocation, SaveData);
+        }
+
+        private void newGameButton_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(SaveLocation, "");
+            bettorListTextBox.Text = "";
+            BettorList = new List<Bettor>();
         }
     }
 }

@@ -40,7 +40,6 @@
             this.colon1 = new System.Windows.Forms.Label();
             this.scoreTeam2 = new System.Windows.Forms.TextBox();
             this.refreshButton = new System.Windows.Forms.Button();
-            this.betButton = new System.Windows.Forms.Button();
             this.currentBalenceLabel = new System.Windows.Forms.Label();
             this.currentBalenceTitleLabel = new System.Windows.Forms.Label();
             this.matchesPanel = new System.Windows.Forms.Panel();
@@ -68,7 +67,6 @@
             this.betPanel.Controls.Add(this.betMenuButton);
             this.betPanel.Controls.Add(this.teamPanel);
             this.betPanel.Controls.Add(this.refreshButton);
-            this.betPanel.Controls.Add(this.betButton);
             this.betPanel.Controls.Add(this.currentBalenceLabel);
             this.betPanel.Controls.Add(this.currentBalenceTitleLabel);
             this.betPanel.Location = new System.Drawing.Point(59, 85);
@@ -82,9 +80,9 @@
             this.scheduleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.scheduleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scheduleButton.ForeColor = System.Drawing.Color.White;
-            this.scheduleButton.Location = new System.Drawing.Point(124, 277);
+            this.scheduleButton.Location = new System.Drawing.Point(13, 277);
             this.scheduleButton.Name = "scheduleButton";
-            this.scheduleButton.Size = new System.Drawing.Size(75, 28);
+            this.scheduleButton.Size = new System.Drawing.Size(111, 28);
             this.scheduleButton.TabIndex = 13;
             this.scheduleButton.Text = "Schema";
             this.scheduleButton.UseVisualStyleBackColor = false;
@@ -96,9 +94,9 @@
             this.betMenuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.betMenuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.betMenuButton.ForeColor = System.Drawing.Color.White;
-            this.betMenuButton.Location = new System.Drawing.Point(219, 277);
+            this.betMenuButton.Location = new System.Drawing.Point(229, 277);
             this.betMenuButton.Name = "betMenuButton";
-            this.betMenuButton.Size = new System.Drawing.Size(105, 28);
+            this.betMenuButton.Size = new System.Drawing.Size(95, 28);
             this.betMenuButton.TabIndex = 12;
             this.betMenuButton.Text = "Gok Menu";
             this.betMenuButton.UseVisualStyleBackColor = false;
@@ -181,19 +179,6 @@
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
-            // betButton
-            // 
-            this.betButton.BackColor = System.Drawing.Color.Black;
-            this.betButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.betButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.betButton.ForeColor = System.Drawing.Color.White;
-            this.betButton.Location = new System.Drawing.Point(13, 277);
-            this.betButton.Name = "betButton";
-            this.betButton.Size = new System.Drawing.Size(94, 28);
-            this.betButton.TabIndex = 10;
-            this.betButton.Text = "Wed";
-            this.betButton.UseVisualStyleBackColor = false;
-            // 
             // currentBalenceLabel
             // 
             this.currentBalenceLabel.AutoSize = true;
@@ -262,7 +247,6 @@
         private System.Windows.Forms.Panel matchesPanel;
         private System.Windows.Forms.Label currentBalenceLabel;
         private System.Windows.Forms.Label currentBalenceTitleLabel;
-        private System.Windows.Forms.Button betButton;
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.LinkLabel websiteLinkLabel;
         private System.Windows.Forms.Panel teamPanel;
