@@ -19,6 +19,7 @@ namespace FifaProject
         public List<string> Schedule;
         public string TeamOne;
         public string TeamTwo;
+        public Bettor activeBettor;
 
         public string SaveLocation = "fifa-save.json";
 
@@ -70,7 +71,15 @@ namespace FifaProject
 
         private void BetMenuForm_Load(object sender, EventArgs e)
         {
-            string saveJson = File.ReadAllText(SaveLocation);
+            string saveJson = "";
+            try
+            {
+                 saveJson = File.ReadAllText(SaveLocation);
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+
+            }
 
             if(saveJson != "")
             {
@@ -88,13 +97,25 @@ namespace FifaProject
 
         private void betButton_Click(object sender, EventArgs e)
         {
+            string scoreTeam1 = scoreTextBox1.Text;
+            string scoreTeam2 = scoreTextBox2.Text;
+            int cash = int.Parse(euroTextBox.Text);
+            string winningTeam = teamsComboBox.Text;
+
+            // When bettor doesn't have enough cash for the bet
+            if (activeBettor.Cash < cash)
+            {
+                MessageBox.Show("Sorry, u heeft niet genoeg geld voor deze gok.");
+                return;
+            }
+
             for (int i = 0; i < BettorList.Count; i++)
             {
                 if (bettorComboBox.Text == BettorList[i].Name)
                 {
-                    if(betTextBox.Text.All(char.IsDigit) == true)
+                    if(scoreTextBox1.Text.All(char.IsDigit) == true)
                     {
-                        BettorList[i].CurrentBet = int.Parse(betTextBox.Text);
+                        BettorList[i].CurrentBet = int.Parse(scoreTextBox1.Text);
                     }
                     else
                     {
@@ -104,7 +125,7 @@ namespace FifaProject
                 }
             }
             bettorComboBox.Text = "";
-            betTextBox.Text = "";
+            scoreTextBox1.Text = "";
             teamsComboBox.Text = "";
             Initialize();
         }
@@ -120,6 +141,38 @@ namespace FifaProject
             File.WriteAllText(SaveLocation, "");
             bettorListTextBox.Text = "";
             BettorList = new List<Bettor>();
+        }
+
+        private void bettorComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string bettorName = bettorComboBox.Text;
+
+            for (int i = 0; i < BettorList.Count; i++)
+            {
+                if (bettorName == BettorList[i].Name)
+                {
+                    activeBettor = BettorList[i];
+
+                    return;
+                }
+            }
+        }
+
+        private void cheatPanel_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // Secret cheat code gives user +500 cash
+            string cheatCode = "";
+
+            CheatForm cheatForm = new CheatForm();
+            cheatForm.ShowDialog();
+            cheatCode = cheatForm.Cheat;
+            if (cheatCode == "make it rain")
+            {
+                if (activeBettor != null)
+                {
+                    activeBettor.Cash += 500;
+                }
+            }
         }
     }
 }

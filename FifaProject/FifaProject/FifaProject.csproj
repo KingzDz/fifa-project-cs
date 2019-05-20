@@ -62,6 +62,12 @@
     <Compile Include="BettorForm.Designer.cs">
       <DependentUpon>BettorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CheatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheatForm.Designer.cs">
+      <DependentUpon>CheatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FetchSchedule.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -77,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BettorForm.resx">
       <DependentUpon>BettorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheatForm.resx">
+      <DependentUpon>CheatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

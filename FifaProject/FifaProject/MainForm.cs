@@ -22,6 +22,8 @@ namespace FifaProject
         List<FetchTeam.Record> team;
         FetchSchedule fetchedSchedule;
 
+        decimal balance = 0;
+
         public MainForm()
         {
             InitializeComponent();
@@ -62,8 +64,9 @@ namespace FifaProject
         private void MainForm_Load(object sender, EventArgs e)
         {
             //var iets = fetchTeams();
-            
+
             //iets.Wait();
+            currentBalenceLabel.Text = $"€{balance.ToString()}";
             initializeTeams();
 
             System.Net.WebClient client = new System.Net.WebClient();
@@ -94,7 +97,6 @@ namespace FifaProject
             int locationY = teamLabel1.Location.Y;
             int locationTextBoxY = scoreTeam1.Location.Y;
             int j = 0;
-            int a = 2;
 
             team = fetchedTeams.records;
             for (int k = 0; k < team.Count(); k++)
