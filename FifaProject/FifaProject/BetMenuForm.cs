@@ -15,6 +15,7 @@ namespace FifaProject
     public partial class BetMenuForm : Form
     {
         List<Bettor> BettorList;
+        FetchScores fetchedScores;
         public List<string> TeamList;
         public List<string> Schedule;
         public string TeamOne;
@@ -51,6 +52,15 @@ namespace FifaProject
             string[] teams = Schedule[MatchId].Split('-');
             TeamOne = teams[0].Trim();
             TeamTwo = teams[1].Trim();
+        }
+
+        private void FetchScores()
+        {
+            System.Net.WebClient client = new System.Net.WebClient();
+            string read = client.DownloadString("http://localhost/website/API/results.php?key=J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3");
+            // ik heb echt geen idee hoe ik dit moet laten werken
+            //fetchedScores = JsonConvert.DeserializeObject<FetchScores>(read);
+
         }
 
         private void newBettorButton_Click(object sender, EventArgs e)
@@ -90,7 +100,7 @@ namespace FifaProject
 
             FindTeams();
             Initialize();
-
+            FetchScores();
         }
 
         private void betButton_Click(object sender, EventArgs e)

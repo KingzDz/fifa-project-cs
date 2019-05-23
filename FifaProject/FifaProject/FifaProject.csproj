@@ -69,6 +69,7 @@
       <DependentUpon>CheatForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FetchSchedule.cs" />
+    <Compile Include="FetchScores.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
