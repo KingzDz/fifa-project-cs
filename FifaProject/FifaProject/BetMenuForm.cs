@@ -140,16 +140,30 @@ namespace FifaProject
                 scoreTeam2 = scoreTextBox2.Text;
             }
 
-            
-            int cash = int.Parse(euroTextBox.Text);
-            string winningTeam = teamsComboBox.Text;
-
-            // When bettor doesn't have enough cash for the bet
-            if (activeBettor.Cash < cash)
+            try
             {
-                MessageBox.Show("Sorry, u heeft niet genoeg geld voor deze gok.");
-                return;
-            }
+                int cash = int.Parse(euroTextBox.Text);
+                string winningTeam = teamsComboBox.Text;
+
+                // When bettor doesn't have enough cash for the bet
+                if (activeBettor.Cash < cash)
+                {
+                     MessageBox.Show("Sorry, u heeft niet genoeg geld voor deze gok.");
+                     return;
+                }
+
+                activeBettor.Score = $"{scoreTeam1}-{scoreTeam2}";
+            
+                if(euroTextBox.Text.All(char.IsDigit) == true)
+                {
+                    activeBettor.CurrentBet = int.Parse(euroTextBox.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Geef alleen cijfers mee.");
+                }
+
+                activeBettor.TeamBetOn = teamsComboBox.Text;
 
             //activeBettor.Score = $"{scoreTeam1}-{scoreTeam2}";
             
@@ -161,10 +175,12 @@ namespace FifaProject
                 bettorListTextBox.Text += listMessage;
 
             }
-            else
+            catch (System.FormatException)
             {
-                MessageBox.Show("Geef alleen cijfers mee.");
+                
             }
+          }
+            
 
             //activeBettor.TeamBetOn = teamsComboBox.Text;
 
