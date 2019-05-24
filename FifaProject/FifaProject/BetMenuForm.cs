@@ -21,10 +21,12 @@ namespace FifaProject
         public string TeamOne;
         public string TeamTwo;
         public Bettor activeBettor;
+        public string Format = "{0} wed {1} euro op {2} met {3} als eindstand. | {4} euro \n";
 
         public string SaveLocation = "fifa-save.json";
 
         int MatchId = 0;
+        int BetId = 0;
 
         public BetMenuForm()
         {
@@ -33,9 +35,12 @@ namespace FifaProject
 
         private void Initialize()
         {
+            // Leeg eerst de comboboxes
             bettorComboBox.Items.Clear();
             teamsComboBox.Items.Clear();
+            matchComboBox.Items.Clear();
 
+            // Als er Bettors zijn stop ze dan in de bettorComboBox
             if (BettorList.Count > 0)
             {
                 for (int i = 0; i < BettorList.Count; i++)
@@ -43,12 +48,25 @@ namespace FifaProject
                     bettorComboBox.Items.Add(BettorList[i].Name);
                 }
             }
+            // Stop de teams uit deze ronde in teamsComboBox
             teamsComboBox.Items.Add(TeamOne);
             teamsComboBox.Items.Add(TeamTwo);
+
+            // Stop een lijst van matches in matchComboBox    
+            
+            if (Schedule.Count > 0)
+            {
+                for (int i = 0; i < Schedule.Count; i++)
+                {
+                    matchComboBox.Items.Add(Schedule[i]);
+                }
+            }
         }
 
         private void FindTeams()
         {
+            // Kijkt welke twee teams tegen elkaar moeten spelen
+            // MatchId is de id van de ronde
             string[] teams = Schedule[MatchId].Split('-');
             TeamOne = teams[0].Trim();
             TeamTwo = teams[1].Trim();
@@ -57,10 +75,9 @@ namespace FifaProject
         private void FetchScores()
         {
             System.Net.WebClient client = new System.Net.WebClient();
-            string read = client.DownloadString("http://localhost/website/API/results.php?key=J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3");
+            string read = client.DownloadString("http://sybrandbos.nl/website/API/results.php?key=J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3");
             // ik heb echt geen idee hoe ik dit moet laten werken
             //fetchedScores = JsonConvert.DeserializeObject<FetchScores>(read);
-
         }
 
         private void newBettorButton_Click(object sender, EventArgs e)
@@ -72,6 +89,7 @@ namespace FifaProject
             if (NewBettor != null)
             {
                 BettorList.Add(NewBettor);
+                NewBettor.MatchesBetOn = new List<Bettor.Matches>();
             }
             
             Initialize();
@@ -79,6 +97,7 @@ namespace FifaProject
 
         private void BetMenuForm_Load(object sender, EventArgs e)
         {
+            // Haal de save informatie op
             string saveJson = "";
             try
             {
@@ -89,6 +108,7 @@ namespace FifaProject
 
             }
 
+            // Kijk of er een savegame is. Zo niet, maak een nieuwe aan.
             if(saveJson != "")
             {
                 BettorList = JsonConvert.DeserializeObject<List<Bettor>>(saveJson);
@@ -97,6 +117,7 @@ namespace FifaProject
             {
                 BettorList = new List<Bettor>();
             }
+            matchComboBox.SelectedItem = MatchId;
 
             FindTeams();
             Initialize();
@@ -130,21 +151,26 @@ namespace FifaProject
                 return;
             }
 
-            activeBettor.Score = $"{scoreTeam1}-{scoreTeam2}";
+            //activeBettor.Score = $"{scoreTeam1}-{scoreTeam2}";
             
             if(euroTextBox.Text.All(char.IsDigit) == true)
             {
-                activeBettor.CurrentBet = int.Parse(euroTextBox.Text);
+                //activeBettor.CurrentBet = int.Parse(euroTextBox.Text);
+                string listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
+                activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", listMessage);
+                bettorListTextBox.Text += listMessage;
+
             }
             else
             {
                 MessageBox.Show("Geef alleen cijfers mee.");
             }
 
-            activeBettor.TeamBetOn = teamsComboBox.Text;
+            //activeBettor.TeamBetOn = teamsComboBox.Text;
 
             // Shows bet in bettorListTextBox
-            bettorListTextBox.Text += activeBettor.Name + " wed " + activeBettor.CurrentBet + " euro op " + activeBettor.TeamBetOn + " | Stand: " + activeBettor.Score + "\n";
+            
+            
 
             // Resets textboxes
             bettorComboBox.Text = "";
@@ -198,6 +224,27 @@ namespace FifaProject
                     activeBettor.Cash += 500;
                 }
             }
+        }
+
+        private void matchComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MatchId = matchComboBox.SelectedIndex;
+            bettorListTextBox.Text = "";
+
+            // wanneer je de match verandert kijkt dit of een gokker al een weddenschap op die match heeft geplaats
+            for (int i = 0; i < BettorList.Count; i++)
+            {
+                for (int o = 0; o < BettorList[i].MatchesBetOn.Count; o++)
+                {
+                    if (BettorList[i].MatchesBetOn[o].MatchName == Schedule[MatchId])
+                    {
+                        bettorListTextBox.Text += BettorList[i].MatchesBetOn[o].ListMessage;
+                    }
+                    
+                }               
+            }
+            FindTeams();
+            Initialize();
         }
     }
 }

@@ -10,9 +10,27 @@ namespace FifaProject
     {
         public string Name { get; set; }
         public int Cash{ get; set; }
-        public int CurrentBet { get; set; }
-        public string Score { get; set; }
-        public string TeamBetOn { get; set; }
+
+        public List<Matches> MatchesBetOn { get; set; }
+
+        public class Matches
+        {
+            public string MatchName { get; set; }
+            public int CurrentBet { get; set; }
+            public string TeamBetOn { get; set; }
+            public string Score { get; set; }
+            public string ListMessage { get; set; }
+
+            public Matches(string name, int cb, string tbo, string score, string lm)
+            {
+                MatchName = name;
+                CurrentBet = cb;
+                TeamBetOn = tbo;
+                Score = score;
+                ListMessage = lm;
+                
+            }
+        }
 
         public Bettor(string name, int cash)
         {
@@ -20,20 +38,16 @@ namespace FifaProject
             Cash = cash;
         }
 
+        public void SetBet(string name, int cb, string tbo, string score, string lm)
+        {
+            Matches NewMatch = new Matches(name, cb, tbo, score, lm);
+            
+            MatchesBetOn.Add(NewMatch);
+        }
+
         public void Payout(bool betWon)
         {
-            int cashEarned;
 
-            if(betWon == true)
-            {
-                cashEarned = CurrentBet *= 2;
-            }
-            else
-            {
-                cashEarned = -CurrentBet;
-            }
-
-            Cash += cashEarned;
         }
     }
 }
