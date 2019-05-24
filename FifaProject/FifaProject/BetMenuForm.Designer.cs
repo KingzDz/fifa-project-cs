@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.matchComboBox = new System.Windows.Forms.ComboBox();
             this.euroTextBox = new System.Windows.Forms.TextBox();
             this.euroLabel = new System.Windows.Forms.Label();
             this.colonLabel = new System.Windows.Forms.Label();
@@ -46,8 +48,6 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.newGameButton = new System.Windows.Forms.Button();
             this.cheatPanel = new System.Windows.Forms.Panel();
-            this.matchComboBox = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,10 +75,32 @@
             this.panel1.Size = new System.Drawing.Size(848, 432);
             this.panel1.TabIndex = 0;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(317, 30);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 24);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Ronde:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // matchComboBox
+            // 
+            this.matchComboBox.FormattingEnabled = true;
+            this.matchComboBox.Location = new System.Drawing.Point(397, 30);
+            this.matchComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.matchComboBox.Name = "matchComboBox";
+            this.matchComboBox.Size = new System.Drawing.Size(424, 24);
+            this.matchComboBox.TabIndex = 16;
+            this.matchComboBox.SelectedIndexChanged += new System.EventHandler(this.matchComboBox_SelectedIndexChanged);
+            // 
             // euroTextBox
             // 
             this.euroTextBox.Location = new System.Drawing.Point(27, 228);
-            this.euroTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.euroTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.euroTextBox.Name = "euroTextBox";
             this.euroTextBox.Size = new System.Drawing.Size(112, 22);
             this.euroTextBox.TabIndex = 15;
@@ -108,7 +130,7 @@
             // scoreTextBox2
             // 
             this.scoreTextBox2.Location = new System.Drawing.Point(97, 161);
-            this.scoreTextBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.scoreTextBox2.Margin = new System.Windows.Forms.Padding(4);
             this.scoreTextBox2.Name = "scoreTextBox2";
             this.scoreTextBox2.Size = new System.Drawing.Size(41, 22);
             this.scoreTextBox2.TabIndex = 12;
@@ -128,7 +150,7 @@
             // 
             this.teamsComboBox.FormattingEnabled = true;
             this.teamsComboBox.Location = new System.Drawing.Point(27, 289);
-            this.teamsComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.teamsComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.teamsComboBox.Name = "teamsComboBox";
             this.teamsComboBox.Size = new System.Drawing.Size(269, 24);
             this.teamsComboBox.TabIndex = 9;
@@ -162,7 +184,7 @@
             // scoreTextBox1
             // 
             this.scoreTextBox1.Location = new System.Drawing.Point(27, 161);
-            this.scoreTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.scoreTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.scoreTextBox1.Name = "scoreTextBox1";
             this.scoreTextBox1.Size = new System.Drawing.Size(41, 22);
             this.scoreTextBox1.TabIndex = 6;
@@ -171,11 +193,11 @@
             // 
             this.bettorComboBox.FormattingEnabled = true;
             this.bettorComboBox.Location = new System.Drawing.Point(27, 98);
-            this.bettorComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bettorComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.bettorComboBox.Name = "bettorComboBox";
             this.bettorComboBox.Size = new System.Drawing.Size(269, 24);
             this.bettorComboBox.TabIndex = 5;
-            this.bettorComboBox.SelectedValueChanged += new System.EventHandler(this.bettorComboBox_SelectedValueChanged);
+            this.bettorComboBox.SelectedIndexChanged += new System.EventHandler(this.bettorComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -192,7 +214,7 @@
             // 
             this.bettorListTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bettorListTextBox.Location = new System.Drawing.Point(321, 98);
-            this.bettorListTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bettorListTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.bettorListTextBox.Name = "bettorListTextBox";
             this.bettorListTextBox.ReadOnly = true;
             this.bettorListTextBox.Size = new System.Drawing.Size(500, 314);
@@ -232,7 +254,7 @@
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.Color.Black;
             this.saveButton.Location = new System.Drawing.Point(39, 521);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(100, 28);
             this.saveButton.TabIndex = 11;
@@ -247,7 +269,7 @@
             this.newGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newGameButton.ForeColor = System.Drawing.Color.Black;
             this.newGameButton.Location = new System.Drawing.Point(768, 521);
-            this.newGameButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newGameButton.Margin = new System.Windows.Forms.Padding(4);
             this.newGameButton.Name = "newGameButton";
             this.newGameButton.Size = new System.Drawing.Size(119, 28);
             this.newGameButton.TabIndex = 12;
@@ -258,33 +280,11 @@
             // cheatPanel
             // 
             this.cheatPanel.Location = new System.Drawing.Point(820, -1);
-            this.cheatPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cheatPanel.Margin = new System.Windows.Forms.Padding(4);
             this.cheatPanel.Name = "cheatPanel";
             this.cheatPanel.Size = new System.Drawing.Size(104, 63);
             this.cheatPanel.TabIndex = 13;
             this.cheatPanel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cheatPanel_MouseDoubleClick);
-            // 
-            // matchComboBox
-            // 
-            this.matchComboBox.FormattingEnabled = true;
-            this.matchComboBox.Location = new System.Drawing.Point(397, 30);
-            this.matchComboBox.Margin = new System.Windows.Forms.Padding(4);
-            this.matchComboBox.Name = "matchComboBox";
-            this.matchComboBox.Size = new System.Drawing.Size(424, 24);
-            this.matchComboBox.TabIndex = 16;
-            this.matchComboBox.SelectedIndexChanged += new System.EventHandler(this.matchComboBox_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(317, 30);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 24);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Ronde:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // BetMenuForm
             // 
@@ -297,7 +297,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BetMenuForm";
             this.Text = "BetMenuForm";
             this.Load += new System.EventHandler(this.BetMenuForm_Load);

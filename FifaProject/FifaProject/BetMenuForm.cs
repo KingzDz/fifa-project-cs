@@ -53,7 +53,7 @@ namespace FifaProject
             teamsComboBox.Items.Add(TeamTwo);
 
             // Stop een lijst van matches in matchComboBox    
-            
+
             if (Schedule.Count > 0)
             {
                 for (int i = 0; i < Schedule.Count; i++)
@@ -81,7 +81,7 @@ namespace FifaProject
         }
 
         private void newBettorButton_Click(object sender, EventArgs e)
-        {           
+        {
             BettorForm form = new BettorForm();
             form.BettorList = BettorList;
             form.ShowDialog();
@@ -91,7 +91,7 @@ namespace FifaProject
                 BettorList.Add(NewBettor);
                 NewBettor.MatchesBetOn = new List<Bettor.Matches>();
             }
-            
+
             Initialize();
         }
 
@@ -101,7 +101,7 @@ namespace FifaProject
             string saveJson = "";
             try
             {
-                 saveJson = File.ReadAllText(SaveLocation);
+                saveJson = File.ReadAllText(SaveLocation);
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -109,7 +109,7 @@ namespace FifaProject
             }
 
             // Kijk of er een savegame is. Zo niet, maak een nieuwe aan.
-            if(saveJson != "")
+            if (saveJson != "")
             {
                 BettorList = JsonConvert.DeserializeObject<List<Bettor>>(saveJson);
             }
@@ -129,56 +129,59 @@ namespace FifaProject
             string scoreTeam1 = "";
             string scoreTeam2 = "";
 
-            if (String.IsNullOrEmpty(scoreTextBox1.Text) || String.IsNullOrEmpty(scoreTextBox2.Text))
+            if (String.IsNullOrEmpty(scoreTextBox1.Text) || String.IsNullOrEmpty(scoreTextBox2.Text) || String.IsNullOrEmpty(bettorComboBox.Text) || String.IsNullOrEmpty(euroTextBox.Text) || String.IsNullOrEmpty(teamsComboBox.Text))
             {
-                MessageBox.Show("Sorry, score mag niet leeg zijn");
-            }
-
-            if (scoreTextBox1.Text.All(char.IsDigit) == true && scoreTextBox2.Text.All(char.IsDigit) == true)
-            {
-                scoreTeam1 = scoreTextBox1.Text;
-                scoreTeam2 = scoreTextBox2.Text;
-            }
-
-            
-            int cash = int.Parse(euroTextBox.Text);
-            string winningTeam = teamsComboBox.Text;
-
-            // When bettor doesn't have enough cash for the bet
-            if (activeBettor.Cash < cash)
-            {
-                MessageBox.Show("Sorry, u heeft niet genoeg geld voor deze gok.");
-                return;
-            }
-
-            //activeBettor.Score = $"{scoreTeam1}-{scoreTeam2}";
-            
-            if(euroTextBox.Text.All(char.IsDigit) == true)
-            {
-                //activeBettor.CurrentBet = int.Parse(euroTextBox.Text);
-                string listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
-                activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", listMessage);
-                bettorListTextBox.Text += listMessage;
-
+                MessageBox.Show("Vul eerst het formulier in!");
             }
             else
             {
-                MessageBox.Show("Geef alleen cijfers mee.");
+                if (scoreTextBox1.Text.All(char.IsDigit) == true && scoreTextBox2.Text.All(char.IsDigit) == true)
+                {
+                    scoreTeam1 = scoreTextBox1.Text;
+                    scoreTeam2 = scoreTextBox2.Text;
+                }
+
+
+                int cash = int.Parse(euroTextBox.Text);
+                string winningTeam = teamsComboBox.Text;
+
+                // When bettor doesn't have enough cash for the bet
+                if (activeBettor.Cash < cash)
+                {
+                    MessageBox.Show("Sorry, u heeft niet genoeg geld voor deze gok.");
+                    return;
+                }
+
+                //activeBettor.Score = $"{scoreTeam1}-{scoreTeam2}";
+
+                if (euroTextBox.Text.All(char.IsDigit) == true)
+                {
+                    //activeBettor.CurrentBet = int.Parse(euroTextBox.Text);
+                    string listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
+                    activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", listMessage);
+                    bettorListTextBox.Text += listMessage;
+
+                }
+                else
+                {
+                    MessageBox.Show("Geef alleen cijfers mee.");
+                }
+
+                //activeBettor.TeamBetOn = teamsComboBox.Text;
+
+                // Shows bet in bettorListTextBox
+
+
+
+                // Resets textboxes
+                bettorComboBox.Text = "";
+                scoreTextBox1.Text = "";
+                scoreTextBox2.Text = "";
+                teamsComboBox.Text = "";
+                euroTextBox.Text = "";
+                Initialize();
             }
-
-            //activeBettor.TeamBetOn = teamsComboBox.Text;
-
-            // Shows bet in bettorListTextBox
-            
-            
-
-            // Resets textboxes
-            bettorComboBox.Text = "";
-            scoreTextBox1.Text = "";
-            scoreTextBox2.Text = "";
-            teamsComboBox.Text = "";
-            euroTextBox.Text = "";
-            Initialize();
+                   
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -192,21 +195,6 @@ namespace FifaProject
             File.WriteAllText(SaveLocation, "");
             bettorListTextBox.Text = "";
             BettorList = new List<Bettor>();
-        }
-
-        private void bettorComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            string bettorName = bettorComboBox.Text;
-
-            for (int i = 0; i < BettorList.Count; i++)
-            {
-                if (bettorName == BettorList[i].Name)
-                {
-                    activeBettor = BettorList[i];
-
-                    return;
-                }
-            }
         }
 
         private void cheatPanel_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -246,5 +234,21 @@ namespace FifaProject
             FindTeams();
             Initialize();
         }
+
+        private void bettorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string bettorName = bettorComboBox.Text;
+
+            for (int i = 0; i < BettorList.Count; i++)
+            {
+                if (bettorName == BettorList[i].Name)
+                {
+                    activeBettor = BettorList[i];
+
+                    return;
+                }
+            }
+        }
+
     }
 }
