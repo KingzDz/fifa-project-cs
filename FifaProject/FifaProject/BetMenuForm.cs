@@ -57,7 +57,7 @@ namespace FifaProject
         private void FetchScores()
         {
             System.Net.WebClient client = new System.Net.WebClient();
-            string read = client.DownloadString("http://localhost/website/API/results.php?key=J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3");
+            string read = client.DownloadString("http://sybrandbos.nl/website/API/results.php?key=J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3");
             // ik heb echt geen idee hoe ik dit moet laten werken
             //fetchedScores = JsonConvert.DeserializeObject<FetchScores>(read);
 
@@ -119,41 +119,48 @@ namespace FifaProject
                 scoreTeam2 = scoreTextBox2.Text;
             }
 
+            try
+            {
+                int cash = int.Parse(euroTextBox.Text);
+                string winningTeam = teamsComboBox.Text;
+
+                // When bettor doesn't have enough cash for the bet
+                if (activeBettor.Cash < cash)
+                {
+                     MessageBox.Show("Sorry, u heeft niet genoeg geld voor deze gok.");
+                     return;
+                }
+
+                activeBettor.Score = $"{scoreTeam1}-{scoreTeam2}";
             
-            int cash = int.Parse(euroTextBox.Text);
-            string winningTeam = teamsComboBox.Text;
+                if(euroTextBox.Text.All(char.IsDigit) == true)
+                {
+                    activeBettor.CurrentBet = int.Parse(euroTextBox.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Geef alleen cijfers mee.");
+                }
 
-            // When bettor doesn't have enough cash for the bet
-            if (activeBettor.Cash < cash)
-            {
-                MessageBox.Show("Sorry, u heeft niet genoeg geld voor deze gok.");
-                return;
+                activeBettor.TeamBetOn = teamsComboBox.Text;
+
+                // Shows bet in bettorListTextBox
+                bettorListTextBox.Text += activeBettor.Name + " wed " + activeBettor.CurrentBet + " euro op " + activeBettor.TeamBetOn + " | Stand: " + activeBettor.Score + "\n";
+
+                // Resets textboxes
+                bettorComboBox.Text = "";
+                scoreTextBox1.Text = "";
+                scoreTextBox2.Text = "";
+                teamsComboBox.Text = "";
+                euroTextBox.Text = "";
+                Initialize();
             }
-
-            activeBettor.Score = $"{scoreTeam1}-{scoreTeam2}";
+            catch (System.FormatException)
+            {
+                
+            }
+          }
             
-            if(euroTextBox.Text.All(char.IsDigit) == true)
-            {
-                activeBettor.CurrentBet = int.Parse(euroTextBox.Text);
-            }
-            else
-            {
-                MessageBox.Show("Geef alleen cijfers mee.");
-            }
-
-            activeBettor.TeamBetOn = teamsComboBox.Text;
-
-            // Shows bet in bettorListTextBox
-            bettorListTextBox.Text += activeBettor.Name + " wed " + activeBettor.CurrentBet + " euro op " + activeBettor.TeamBetOn + " | Stand: " + activeBettor.Score + "\n";
-
-            // Resets textboxes
-            bettorComboBox.Text = "";
-            scoreTextBox1.Text = "";
-            scoreTextBox2.Text = "";
-            teamsComboBox.Text = "";
-            euroTextBox.Text = "";
-            Initialize();
-        }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
