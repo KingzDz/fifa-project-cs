@@ -132,17 +132,18 @@ namespace FifaProject
             if (String.IsNullOrEmpty(scoreTextBox1.Text) || String.IsNullOrEmpty(scoreTextBox2.Text) || String.IsNullOrEmpty(bettorComboBox.Text) || String.IsNullOrEmpty(euroTextBox.Text) || String.IsNullOrEmpty(teamsComboBox.Text))
             {
                 MessageBox.Show("Vul eerst het formulier in!");
+
+            }
+            else if (!scoreTextBox1.Text.All(char.IsDigit) || !scoreTextBox2.Text.All(char.IsDigit) || !euroTextBox.Text.All(char.IsDigit))
+            {
+                MessageBox.Show("Geef alleen cijfers mee!");
             }
             else
             {
-                if (scoreTextBox1.Text.All(char.IsDigit) == true && scoreTextBox2.Text.All(char.IsDigit) == true)
-                {
-                    scoreTeam1 = scoreTextBox1.Text;
-                    scoreTeam2 = scoreTextBox2.Text;
-                }
+                scoreTeam1 = scoreTextBox1.Text;
+                scoreTeam2 = scoreTextBox2.Text;
 
-
-                int cash = int.Parse(euroTextBox.Text);
+                int cash = int.Parse(euroTextBox.Text);                                  
                 string winningTeam = teamsComboBox.Text;
 
                 // When bettor doesn't have enough cash for the bet
@@ -152,26 +153,10 @@ namespace FifaProject
                     return;
                 }
 
-                //activeBettor.Score = $"{scoreTeam1}-{scoreTeam2}";
-
-                if (euroTextBox.Text.All(char.IsDigit) == true)
-                {
-                    //activeBettor.CurrentBet = int.Parse(euroTextBox.Text);
-                    string listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
-                    activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", listMessage);
-                    bettorListTextBox.Text += listMessage;
-
-                }
-                else
-                {
-                    MessageBox.Show("Geef alleen cijfers mee.");
-                }
-
-                //activeBettor.TeamBetOn = teamsComboBox.Text;
-
-                // Shows bet in bettorListTextBox
-
-
+                // Set bet and bet message
+                string listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
+                activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", listMessage);
+                bettorListTextBox.Text += listMessage;
 
                 // Resets textboxes
                 bettorComboBox.Text = "";
@@ -194,7 +179,13 @@ namespace FifaProject
         {
             File.WriteAllText(SaveLocation, "");
             bettorListTextBox.Text = "";
+            bettorComboBox.Text = "";
+            scoreTextBox1.Text = "";
+            scoreTextBox2.Text = "";
+            teamsComboBox.Text = "";
+            euroTextBox.Text = "";
             BettorList = new List<Bettor>();
+            
         }
 
         private void cheatPanel_MouseDoubleClick(object sender, MouseEventArgs e)
