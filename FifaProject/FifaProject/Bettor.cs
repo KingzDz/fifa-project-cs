@@ -29,6 +29,7 @@ namespace FifaProject
                 Score = score;
                 ListMessage = lm;
                 
+                
             }
         }
 

@@ -147,10 +147,15 @@ namespace FifaProject
                 string winningTeam = teamsComboBox.Text;
 
                 // When bettor doesn't have enough cash for the bet
-                if (activeBettor.Cash < cash)
+                // If bettor loses their cash wont go under 0
+                if (activeBettor.Cash - (cash * 2) < 0)
                 {
                     MessageBox.Show("Sorry, u heeft niet genoeg geld voor deze gok.");
                     return;
+                }
+                else
+                {
+                    activeBettor.Cash -= cash;
                 }
 
                 // Set bet and bet message

@@ -89,6 +89,7 @@
             // 
             // matchComboBox
             // 
+            this.matchComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.matchComboBox.FormattingEnabled = true;
             this.matchComboBox.Location = new System.Drawing.Point(397, 30);
             this.matchComboBox.Margin = new System.Windows.Forms.Padding(4);
@@ -148,6 +149,7 @@
             // 
             // teamsComboBox
             // 
+            this.teamsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.teamsComboBox.FormattingEnabled = true;
             this.teamsComboBox.Location = new System.Drawing.Point(27, 289);
             this.teamsComboBox.Margin = new System.Windows.Forms.Padding(4);
@@ -191,6 +193,7 @@
             // 
             // bettorComboBox
             // 
+            this.bettorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bettorComboBox.FormattingEnabled = true;
             this.bettorComboBox.Location = new System.Drawing.Point(27, 98);
             this.bettorComboBox.Margin = new System.Windows.Forms.Padding(4);
