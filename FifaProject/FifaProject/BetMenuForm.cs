@@ -74,7 +74,9 @@ namespace FifaProject
 
         private void FetchScores()
         {
-            
+            System.Net.WebClient client = new System.Net.WebClient();
+            string json = client.DownloadString("http://sybrandbos.nl/website/API/results.php?key=J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3");
+            fetchedScores = JsonConvert.DeserializeObject<FetchScores>(json);
         }
 
         private void newBettorButton_Click(object sender, EventArgs e)
@@ -116,9 +118,71 @@ namespace FifaProject
             }
             matchComboBox.SelectedItem = MatchId;
 
+            fetchCompetitionScores();
             FindTeams();
             Initialize();
             FetchScores();
+        }
+
+        /// <summary>
+        /// Checks if there are scores available for the competition.
+        /// </summary>
+        public void fetchCompetitionScores()
+        {
+            // CODE SCHRIJVEN ALS JE SCORES KAN INVULLEN BIJ PHP
+
+            string[] playedMatch = new string[5] { "1", "Manchester", "2", "NAC", "3" };
+            FetchScores();
+
+            if (fetchedScores == null ) // When there are scores available
+            {
+                string message = "Er zijn nieuwe scores beschikbaar. Kijk op je gewonnen hebt!";
+                string title = "Scores beschikbaar.";
+                MessageBox.Show(message, title);
+
+                foreach (Bettor bettor in BettorList)
+                {
+                    int i = 0;
+                    foreach (Bettor.Matches match in bettor.MatchesBetOn)
+                    {
+                        if (match.MatchName == $"{playedMatch[1]} - {playedMatch[3]}")
+                        {
+                            //string currentMatch = "Manchester - NAC"; // This must happen dynamic from the API
+                            //string score = "2-3"; // voorbeeld
+
+                            if ($"{playedMatch[2]}-{playedMatch[4]}" == match.Score) // if score == usersBet
+                            {
+                                int moneyWon = match.CurrentBet * 2;
+
+                                bettor.Cash += moneyWon;
+
+                                match.ResetValues();
+
+                                message = $"Gefeliciteerd! Uw heeft {moneyWon} gewonnen op de wedstrijd {match.MatchName}.";
+                                title = "Gewonnen!";
+                                MessageBox.Show(message, title);
+                            }
+                            else if (false) // When score is not available yet
+                            {
+
+                            }
+                            else
+                            {
+                                match.ResetValues();
+
+                                message = $"Volgende keer beter! Uw heeft {match.CurrentBet} verloren op de wedstrijd {match.MatchName}.";
+                                title = "Jammer!";
+                                MessageBox.Show(message, title);
+                            }
+                        }
+
+                        i++;
+                    }
+
+                    // Deletes all the empty bets from the list
+                    bettor.MatchesBetOn.RemoveAll(r => r.MatchName == null);
+                }
+            }
         }
 
         private void betButton_Click(object sender, EventArgs e)
@@ -143,9 +207,8 @@ namespace FifaProject
                 int cash = int.Parse(euroTextBox.Text);                                  
                 string winningTeam = teamsComboBox.Text;
 
-                // When bettor doesn't have enough cash for the bet
-                // If bettor loses their cash wont go under 0
-                if (activeBettor.Cash - (cash * 2) < 0)
+                // When bettor has not enough cash for the bet.
+                if (activeBettor.Cash - cash < 0)
                 {
                     MessageBox.Show("Sorry, u heeft niet genoeg geld voor deze gok.");
                     return;
