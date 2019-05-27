@@ -33,6 +33,7 @@ namespace FifaProject
         {
             // When user clicks this button the teams must refresh
             //initializeTeams();
+            // test
             
         }
 
