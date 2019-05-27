@@ -74,10 +74,7 @@ namespace FifaProject
 
         private void FetchScores()
         {
-            System.Net.WebClient client = new System.Net.WebClient();
-            string read = client.DownloadString("http://sybrandbos.nl/website/API/results.php?key=J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3");
-            // ik heb echt geen idee hoe ik dit moet laten werken
-            //fetchedScores = JsonConvert.DeserializeObject<FetchScores>(read);
+            
         }
 
         private void newBettorButton_Click(object sender, EventArgs e)

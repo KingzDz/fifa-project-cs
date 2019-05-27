@@ -9,20 +9,32 @@ namespace FifaProject
 {
     public class FetchScores
     {
-        [JsonProperty("id")]
-        public List<int> Id { get; set; }
+        public class Record
+        {
+            [JsonProperty("id")]
+            public int id { get; set; }
 
-        [JsonProperty("firstteam")]
-        public List<string> FirstTeam { get; set; }
+            [JsonProperty("firstteam")]
+            public string firstteam { get; set; }
 
-        [JsonProperty("firstscore")]
-        public List<int> FirstScore { get; set; }
+            [JsonProperty("firstscore")]
+            public int firstscore { get; set; }
 
-        [JsonProperty("secondteam")]
-        public List<string> SecondTeam { get; set; }
+            [JsonProperty("secondteam")]
+            public string secondteam { get; set; }
 
-        [JsonProperty("secondscore")]
-        public List<int> SecondScore { get; set; }
+            [JsonProperty("secondscore")]
+            public int secondscore { get; set; }
+
+            
+        }
+
+        public class RootObject
+        {
+            [JsonProperty("result")]
+            //public Dictionary<int, Records> Records { get; set; }
+            public List<Record> result { get; set; }
+        }
 
     }
 }
