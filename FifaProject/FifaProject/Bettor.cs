@@ -47,6 +47,7 @@ namespace FifaProject
         {
             Name = name;
             Cash = cash;
+            MatchesBetOn = new List<Matches>();
         }
 
         public void SetBet(string name, int cb, string tbo, string score, string lm)

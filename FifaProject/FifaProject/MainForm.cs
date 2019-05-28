@@ -88,15 +88,15 @@ namespace FifaProject
             fetchedScore = JsonConvert.DeserializeObject<FetchScores.RootObject>(json);
 
             teamsLabel.Text = matchComboBox.Text;
-            for (int i = 0; i < fetchedScore.result.Count; i++)
+            for (int i = 0; i < fetchedScore.Records.Count; i++)
             {
-                for (int o = 0; o < fetchedScore.result.Count; o++)
+                for (int o = 0; o < fetchedScore.Records.Count; o++)
                 {
                     string format = "{0} - {1}";
-                    string match = string.Format(format, fetchedScore.result[i].firstteam, fetchedScore.result[o].secondteam);
+                    string match = string.Format(format, fetchedScore.Records[i].firstteam, fetchedScore.Records[o].secondteam);
                     if (match == matchComboBox.Text)
                     {
-                        matchLabel.Text = string.Format(format, fetchedScore.result[i].firstscore, fetchedScore.result[o].secondscore);
+                        matchLabel.Text = string.Format(format, fetchedScore.Records[i].firstscore, fetchedScore.Records[o].secondscore);
                     }
                     else
                     {

@@ -32,8 +32,7 @@ namespace FifaProject
         public class RootObject
         {
             [JsonProperty("result")]
-            //public Dictionary<int, Records> Records { get; set; }
-            public List<Record> result { get; set; }
+            public List<Record> Records { get; set; }
         }
 
     }

@@ -15,7 +15,7 @@ namespace FifaProject
     public partial class BetMenuForm : Form
     {
         List<Bettor> BettorList;
-        FetchScores fetchedScores;
+        FetchScores.RootObject fetchedScores;
         public List<string> TeamList;
         public List<string> Schedule;
         public string TeamOne;
@@ -36,18 +36,9 @@ namespace FifaProject
         private void Initialize()
         {
             // Leeg eerst de comboboxes
-            bettorComboBox.Items.Clear();
             teamsComboBox.Items.Clear();
             matchComboBox.Items.Clear();
 
-            // Als er Bettors zijn stop ze dan in de bettorComboBox
-            if (BettorList.Count > 0)
-            {
-                for (int i = 0; i < BettorList.Count; i++)
-                {
-                    bettorComboBox.Items.Add(BettorList[i].Name);
-                }
-            }
             // Stop de teams uit deze ronde in teamsComboBox
             teamsComboBox.Items.Add(TeamOne);
             teamsComboBox.Items.Add(TeamTwo);
@@ -76,52 +67,62 @@ namespace FifaProject
         {
             System.Net.WebClient client = new System.Net.WebClient();
             string json = client.DownloadString("http://sybrandbos.nl/website/API/results.php?key=J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3");
-            fetchedScores = JsonConvert.DeserializeObject<FetchScores>(json);
-        }
-
-        private void newBettorButton_Click(object sender, EventArgs e)
-        {
-            BettorForm form = new BettorForm();
-            form.BettorList = BettorList;
-            form.ShowDialog();
-            Bettor NewBettor = form.NewBettor;
-            if (NewBettor != null)
-            {
-                BettorList.Add(NewBettor);
-                NewBettor.MatchesBetOn = new List<Bettor.Matches>();
-            }
-
-            Initialize();
+            fetchedScores = JsonConvert.DeserializeObject<FetchScores.RootObject>(json);
         }
 
         private void BetMenuForm_Load(object sender, EventArgs e)
         {
-            // Haal de save informatie op
+            getSaveGame(SaveLocation);
+
+            matchComboBox.SelectedItem = MatchId;
+
+            selectBettor(); // Chooses which bettor is active
+            
+            FindTeams();
+            Initialize();
+            //FetchScores();
+        }
+
+        /// <summary>
+        /// Gets the JSON file, from the save location, and converts it to a class.
+        /// </summary>
+        /// <param name="saveLocation"></param>
+        public void getSaveGame(string saveLocation)
+        {
             string saveJson = "";
+
             try
             {
-                saveJson = File.ReadAllText(SaveLocation);
+                saveJson = File.ReadAllText(saveLocation);
+
+                if (saveJson != "")
+                {
+                    BettorList = JsonConvert.DeserializeObject<List<Bettor>>(saveJson);
+                }
             }
             catch (System.IO.FileNotFoundException)
             {
-
-            }
-
-            // Kijk of er een savegame is. Zo niet, maak een nieuwe aan.
-            if (saveJson != "")
-            {
-                BettorList = JsonConvert.DeserializeObject<List<Bettor>>(saveJson);
-            }
-            else
-            {
                 BettorList = new List<Bettor>();
             }
-            matchComboBox.SelectedItem = MatchId;
+        }
 
-            fetchCompetitionScores();
-            FindTeams();
-            Initialize();
-            FetchScores();
+        /// <summary>
+        /// Opens a form where a bettor must been chosen, otherwise this form closes.
+        /// </summary>
+        public void selectBettor()
+        {
+            UserForm userForm = new UserForm();
+            userForm.saveLocation = SaveLocation;
+            userForm.bettorList = BettorList;
+            userForm.ShowDialog();
+            activeBettor = userForm.bettor;
+            BettorList = userForm.bettorList;
+
+            if (activeBettor == null)
+            {
+                this.Close();
+                return;
+            }
         }
 
         /// <summary>
@@ -129,59 +130,56 @@ namespace FifaProject
         /// </summary>
         public void fetchCompetitionScores()
         {
-            // CODE SCHRIJVEN ALS JE SCORES KAN INVULLEN BIJ PHP
+            FetchScores(); // Fetches the scores from the API
 
-            string[] playedMatch = new string[5] { "1", "Manchester", "2", "NAC", "3" };
-            FetchScores();
-
-            if (fetchedScores == null ) // When there are scores available
+            if (fetchedScores.Records[0] != null && activeBettor.MatchesBetOn.Any() == true) // When there are scores available
             {
                 string message = "Er zijn nieuwe scores beschikbaar. Kijk op je gewonnen hebt!";
                 string title = "Scores beschikbaar.";
                 MessageBox.Show(message, title);
-
-                foreach (Bettor bettor in BettorList)
+                
+                int i = 0;
+                foreach (Bettor.Matches match in activeBettor.MatchesBetOn)
                 {
-                    int i = 0;
-                    foreach (Bettor.Matches match in bettor.MatchesBetOn)
-                    {
-                        if (match.MatchName == $"{playedMatch[1]} - {playedMatch[3]}")
-                        {
-                            //string currentMatch = "Manchester - NAC"; // This must happen dynamic from the API
-                            //string score = "2-3"; // voorbeeld
 
-                            if ($"{playedMatch[2]}-{playedMatch[4]}" == match.Score) // if score == usersBet
+                    foreach (FetchScores.Record record in fetchedScores.Records)
+                    {
+
+                        if ($"{record.firstteam} - {record.secondteam}" == match.MatchName) // When the match is available
+                        {
+
+                            if ($"{record.firstscore}-{record.secondscore}" == match.Score) // When the score is correct
                             {
                                 int moneyWon = match.CurrentBet * 2;
 
-                                bettor.Cash += moneyWon;
-
-                                match.ResetValues();
+                                activeBettor.Cash += moneyWon;
 
                                 message = $"Gefeliciteerd! Uw heeft {moneyWon} gewonnen op de wedstrijd {match.MatchName}.";
                                 title = "Gewonnen!";
                                 MessageBox.Show(message, title);
-                            }
-                            else if (false) // When score is not available yet
-                            {
 
-                            }
-                            else
-                            {
                                 match.ResetValues();
-
+                            }
+                            else if ($"{record.firstscore}-{record.secondscore}" != match.Score) // When the score is not correct
+                            {
                                 message = $"Volgende keer beter! Uw heeft {match.CurrentBet} verloren op de wedstrijd {match.MatchName}.";
                                 title = "Jammer!";
                                 MessageBox.Show(message, title);
+
+                                match.ResetValues();
                             }
                         }
-
-                        i++;
                     }
 
-                    // Deletes all the empty bets from the list
-                    bettor.MatchesBetOn.RemoveAll(r => r.MatchName == null);
+                    i++;
                 }
+
+                // Deletes all the empty bets from the list
+                activeBettor.MatchesBetOn.RemoveAll(r => r.MatchName == null);
+            }
+            else
+            {
+                MessageBox.Show("Geen scores");
             }
         }
 
@@ -190,7 +188,7 @@ namespace FifaProject
             string scoreTeam1 = "";
             string scoreTeam2 = "";
 
-            if (String.IsNullOrEmpty(scoreTextBox1.Text) || String.IsNullOrEmpty(scoreTextBox2.Text) || String.IsNullOrEmpty(bettorComboBox.Text) || String.IsNullOrEmpty(euroTextBox.Text) || String.IsNullOrEmpty(teamsComboBox.Text))
+            if (String.IsNullOrEmpty(scoreTextBox1.Text) || String.IsNullOrEmpty(scoreTextBox2.Text) || String.IsNullOrEmpty(euroTextBox.Text) || String.IsNullOrEmpty(teamsComboBox.Text))
             {
                 MessageBox.Show("Vul eerst het formulier in!");
 
@@ -219,16 +217,19 @@ namespace FifaProject
                 }
 
                 // Set bet and bet message
-                string listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
+                string listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text),
+                    teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
+
                 activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", listMessage);
+
                 bettorListTextBox.Text += listMessage;
 
                 // Resets textboxes
-                bettorComboBox.Text = "";
                 scoreTextBox1.Text = "";
                 scoreTextBox2.Text = "";
                 teamsComboBox.Text = "";
                 euroTextBox.Text = "";
+
                 Initialize();
             }
                    
@@ -236,15 +237,14 @@ namespace FifaProject
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            string SaveData = JsonConvert.SerializeObject(BettorList);
-            File.WriteAllText(SaveLocation, SaveData);
+            string saveData = JsonConvert.SerializeObject(BettorList);
+            File.WriteAllText(SaveLocation, saveData);
         }
 
         private void newGameButton_Click(object sender, EventArgs e)
         {
             File.WriteAllText(SaveLocation, "");
             bettorListTextBox.Text = "";
-            bettorComboBox.Text = "";
             scoreTextBox1.Text = "";
             scoreTextBox2.Text = "";
             teamsComboBox.Text = "";
@@ -284,27 +284,16 @@ namespace FifaProject
                     {
                         bettorListTextBox.Text += BettorList[i].MatchesBetOn[o].ListMessage;
                     }
-                    
-                }               
+
+                }
             }
             FindTeams();
             Initialize();
         }
 
-        private void bettorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void BetMenuForm_Shown(object sender, EventArgs e)
         {
-            string bettorName = bettorComboBox.Text;
-
-            for (int i = 0; i < BettorList.Count; i++)
-            {
-                if (bettorName == BettorList[i].Name)
-                {
-                    activeBettor = BettorList[i];
-
-                    return;
-                }
-            }
+            fetchCompetitionScores();
         }
-
     }
 }
