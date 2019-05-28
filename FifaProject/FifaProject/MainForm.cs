@@ -89,13 +89,13 @@ namespace FifaProject
 
             teamsLabel.Text = matchComboBox.Text;
             matchLabel.Text = "De stand is nog niet bekend.";
-            for (int i = 0; i < fetchedScore.result.Count; i++)
+            for (int i = 0; i < fetchedScore.Records.Count; i++)
             {
                 string format = "{0} - {1}";
-                string match = string.Format(format, fetchedScore.result[i].firstteam, fetchedScore.result[i].secondteam);
+                string match = string.Format(format, fetchedScore.Records[i].firstteam, fetchedScore.Records[i].secondteam);
                 if (match == matchComboBox.Text)
                 {
-                    matchLabel.Text = string.Format(format, fetchedScore.result[i].firstscore, fetchedScore.result[i].secondscore); ;
+                    matchLabel.Text = string.Format(format, fetchedScore.Records[i].firstscore, fetchedScore.Records[i].secondscore); ;
                 }
                 
             }
