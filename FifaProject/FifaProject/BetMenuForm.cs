@@ -26,7 +26,6 @@ namespace FifaProject
         public string SaveLocation = "fifa-save.json";
 
         int MatchId = 0;
-        int BetId = 0;
 
         public BetMenuForm()
         {
@@ -80,7 +79,6 @@ namespace FifaProject
             
             FindTeams();
             Initialize();
-            //FetchScores();
         }
 
         /// <summary>
@@ -177,10 +175,8 @@ namespace FifaProject
                 // Deletes all the empty bets from the list
                 activeBettor.MatchesBetOn.RemoveAll(r => r.MatchName == null);
             }
-            else
-            {
-                MessageBox.Show("Geen scores");
-            }
+
+            savingGame(SaveLocation);
         }
 
         private void betButton_Click(object sender, EventArgs e)
@@ -232,13 +228,14 @@ namespace FifaProject
 
                 Initialize();
             }
-                   
+
+            savingGame(SaveLocation);
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        public void savingGame(string saveLocation)
         {
             string saveData = JsonConvert.SerializeObject(BettorList);
-            File.WriteAllText(SaveLocation, saveData);
+            File.WriteAllText(saveLocation, saveData);
         }
 
         private void newGameButton_Click(object sender, EventArgs e)
@@ -268,6 +265,8 @@ namespace FifaProject
                     activeBettor.Cash += 500;
                 }
             }
+
+            savingGame(SaveLocation);
         }
 
         private void matchComboBox_SelectedIndexChanged(object sender, EventArgs e)

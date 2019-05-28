@@ -43,7 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.bettorListTextBox = new System.Windows.Forms.RichTextBox();
             this.titleLabel = new System.Windows.Forms.Label();
-            this.saveButton = new System.Windows.Forms.Button();
             this.newGameButton = new System.Windows.Forms.Button();
             this.cheatPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -66,7 +65,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.bettorListTextBox);
             this.panel1.Location = new System.Drawing.Point(29, 53);
-            this.panel1.Margin = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.panel1.Margin = new System.Windows.Forms.Padding(20);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(636, 351);
             this.panel1.TabIndex = 0;
@@ -209,20 +208,6 @@
             this.titleLabel.TabIndex = 1;
             this.titleLabel.Text = "Gok Menu";
             // 
-            // saveButton
-            // 
-            this.saveButton.BackColor = System.Drawing.Color.White;
-            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.ForeColor = System.Drawing.Color.Black;
-            this.saveButton.Location = new System.Drawing.Point(29, 423);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 9;
-            this.saveButton.Text = "Opslaan";
-            this.saveButton.UseVisualStyleBackColor = false;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
             // newGameButton
             // 
             this.newGameButton.BackColor = System.Drawing.Color.White;
@@ -253,7 +238,6 @@
             this.ClientSize = new System.Drawing.Size(694, 450);
             this.Controls.Add(this.cheatPanel);
             this.Controls.Add(this.newGameButton);
-            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.panel1);
             this.Name = "BetMenuForm";
@@ -278,7 +262,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox teamsComboBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button newGameButton;
         private System.Windows.Forms.TextBox scoreTextBox2;
         private System.Windows.Forms.TextBox euroTextBox;
