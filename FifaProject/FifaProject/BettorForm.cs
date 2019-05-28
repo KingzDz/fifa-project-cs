@@ -13,7 +13,6 @@ namespace FifaProject
     public partial class BettorForm : Form
     {
         public Bettor NewBettor;
-        public List<Bettor> BettorList;
 
         public BettorForm()
         {
@@ -25,8 +24,8 @@ namespace FifaProject
             if(nameTextBox.Text != "")
             {
                 NewBettor = new Bettor(nameTextBox.Text, 150);
+
                 this.Close();
-               
             }
             else
             {

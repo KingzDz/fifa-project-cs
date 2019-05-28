@@ -28,8 +28,18 @@ namespace FifaProject
                 TeamBetOn = tbo;
                 Score = score;
                 ListMessage = lm;
-                
-                
+            }
+
+            /// <summary>
+            /// Resets the values of this class.
+            /// </summary>
+            public void ResetValues()
+            {
+                MatchName = null;
+                CurrentBet = 0;
+                TeamBetOn = null;
+                Score = null;
+                ListMessage = null;
             }
         }
 
@@ -37,6 +47,7 @@ namespace FifaProject
         {
             Name = name;
             Cash = cash;
+            MatchesBetOn = new List<Matches>();
         }
 
         public void SetBet(string name, int cb, string tbo, string score, string lm)
