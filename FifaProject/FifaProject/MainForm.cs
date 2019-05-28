@@ -88,22 +88,16 @@ namespace FifaProject
             fetchedScore = JsonConvert.DeserializeObject<FetchScores.RootObject>(json);
 
             teamsLabel.Text = matchComboBox.Text;
+            matchLabel.Text = "De stand is nog niet bekend.";
             for (int i = 0; i < fetchedScore.result.Count; i++)
             {
-                for (int o = 0; o < fetchedScore.result.Count; o++)
+                string format = "{0} - {1}";
+                string match = string.Format(format, fetchedScore.result[i].firstteam, fetchedScore.result[i].secondteam);
+                if (match == matchComboBox.Text)
                 {
-                    string format = "{0} - {1}";
-                    string match = string.Format(format, fetchedScore.result[i].firstteam, fetchedScore.result[o].secondteam);
-                    if (match == matchComboBox.Text)
-                    {
-                        matchLabel.Text = string.Format(format, fetchedScore.result[i].firstscore, fetchedScore.result[o].secondscore);
-                    }
-                    else
-                    {
-                        matchLabel.Text = "De stand is nog niet bekend.";
-                    }
-
+                    matchLabel.Text = string.Format(format, fetchedScore.result[i].firstscore, fetchedScore.result[i].secondscore); ;
                 }
+                
             }
 
         }
