@@ -98,7 +98,7 @@
             // 
             // euroTextBox
             // 
-            this.euroTextBox.Location = new System.Drawing.Point(20, 185);
+            this.euroTextBox.Location = new System.Drawing.Point(26, 210);
             this.euroTextBox.Name = "euroTextBox";
             this.euroTextBox.Size = new System.Drawing.Size(85, 20);
             this.euroTextBox.TabIndex = 6;
@@ -107,7 +107,7 @@
             // 
             this.euroLabel.AutoSize = true;
             this.euroLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.euroLabel.Location = new System.Drawing.Point(16, 164);
+            this.euroLabel.Location = new System.Drawing.Point(22, 189);
             this.euroLabel.Name = "euroLabel";
             this.euroLabel.Size = new System.Drawing.Size(40, 18);
             this.euroLabel.TabIndex = 14;
@@ -117,7 +117,7 @@
             // 
             this.colonLabel.AutoSize = true;
             this.colonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colonLabel.Location = new System.Drawing.Point(16, 107);
+            this.colonLabel.Location = new System.Drawing.Point(22, 132);
             this.colonLabel.Name = "colonLabel";
             this.colonLabel.Size = new System.Drawing.Size(13, 20);
             this.colonLabel.TabIndex = 13;
@@ -125,7 +125,7 @@
             // 
             // scoreTextBox2
             // 
-            this.scoreTextBox2.Location = new System.Drawing.Point(19, 130);
+            this.scoreTextBox2.Location = new System.Drawing.Point(25, 155);
             this.scoreTextBox2.Name = "scoreTextBox2";
             this.scoreTextBox2.Size = new System.Drawing.Size(32, 20);
             this.scoreTextBox2.TabIndex = 5;
@@ -134,7 +134,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 62);
+            this.label2.Location = new System.Drawing.Point(19, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 18);
             this.label2.TabIndex = 8;
@@ -157,7 +157,7 @@
             // 
             // scoreTextBox1
             // 
-            this.scoreTextBox1.Location = new System.Drawing.Point(19, 85);
+            this.scoreTextBox1.Location = new System.Drawing.Point(25, 110);
             this.scoreTextBox1.Name = "scoreTextBox1";
             this.scoreTextBox1.Size = new System.Drawing.Size(32, 20);
             this.scoreTextBox1.TabIndex = 4;
@@ -218,7 +218,7 @@
             // 
             this.balanceTitleLabel.AutoSize = true;
             this.balanceTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.balanceTitleLabel.Location = new System.Drawing.Point(16, 24);
+            this.balanceTitleLabel.Location = new System.Drawing.Point(22, 27);
             this.balanceTitleLabel.Name = "balanceTitleLabel";
             this.balanceTitleLabel.Size = new System.Drawing.Size(50, 18);
             this.balanceTitleLabel.TabIndex = 18;
@@ -228,7 +228,7 @@
             // 
             this.balanceLabel.AutoSize = true;
             this.balanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.balanceLabel.Location = new System.Drawing.Point(84, 24);
+            this.balanceLabel.Location = new System.Drawing.Point(90, 27);
             this.balanceLabel.Name = "balanceLabel";
             this.balanceLabel.Size = new System.Drawing.Size(37, 18);
             this.balanceLabel.TabIndex = 19;
@@ -238,7 +238,7 @@
             // 
             this.teamOneLabel.AutoSize = true;
             this.teamOneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamOneLabel.Location = new System.Drawing.Point(57, 88);
+            this.teamOneLabel.Location = new System.Drawing.Point(63, 113);
             this.teamOneLabel.Name = "teamOneLabel";
             this.teamOneLabel.Size = new System.Drawing.Size(46, 17);
             this.teamOneLabel.TabIndex = 20;
@@ -248,7 +248,7 @@
             // 
             this.teamTwoLabel.AutoSize = true;
             this.teamTwoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamTwoLabel.Location = new System.Drawing.Point(59, 131);
+            this.teamTwoLabel.Location = new System.Drawing.Point(65, 156);
             this.teamTwoLabel.Name = "teamTwoLabel";
             this.teamTwoLabel.Size = new System.Drawing.Size(46, 17);
             this.teamTwoLabel.TabIndex = 21;

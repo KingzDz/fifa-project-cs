@@ -165,9 +165,10 @@ namespace FifaProject
                             }
                             else if ($"{record.firstscore}-{record.secondscore}" != match.Score) // When the score is not correct
                             {
+                                string[] scores = match.Score.Split('-'); // Splits match scores to array
+
                                 if (record.firstscore > record.secondscore)
                                 {
-                                    string[] scores = match.Score.Split('-');
 
                                     if (int.Parse(scores[0]) > int.Parse(scores[1]))
                                     {
@@ -184,7 +185,6 @@ namespace FifaProject
                                 }
                                 else if (record.firstscore < record.secondscore)
                                 {
-                                    string[] scores = match.Score.Split('-');
 
                                     if (int.Parse(scores[0]) < int.Parse(scores[1]))
                                     {
