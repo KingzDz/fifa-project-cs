@@ -35,8 +35,6 @@
             this.euroLabel = new System.Windows.Forms.Label();
             this.colonLabel = new System.Windows.Forms.Label();
             this.scoreTextBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.teamsComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.betButton = new System.Windows.Forms.Button();
             this.scoreTextBox1 = new System.Windows.Forms.TextBox();
@@ -45,20 +43,26 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.newGameButton = new System.Windows.Forms.Button();
             this.cheatPanel = new System.Windows.Forms.Panel();
+            this.balanceTitleLabel = new System.Windows.Forms.Label();
+            this.balanceLabel = new System.Windows.Forms.Label();
+            this.teamOneLabel = new System.Windows.Forms.Label();
+            this.teamTwoLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.teamTwoLabel);
+            this.panel1.Controls.Add(this.teamOneLabel);
+            this.panel1.Controls.Add(this.balanceLabel);
+            this.panel1.Controls.Add(this.balanceTitleLabel);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.matchComboBox);
             this.panel1.Controls.Add(this.euroTextBox);
             this.panel1.Controls.Add(this.euroLabel);
             this.panel1.Controls.Add(this.colonLabel);
             this.panel1.Controls.Add(this.scoreTextBox2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.teamsComboBox);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.betButton);
             this.panel1.Controls.Add(this.scoreTextBox1);
@@ -113,7 +117,7 @@
             // 
             this.colonLabel.AutoSize = true;
             this.colonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colonLabel.Location = new System.Drawing.Point(56, 130);
+            this.colonLabel.Location = new System.Drawing.Point(16, 107);
             this.colonLabel.Name = "colonLabel";
             this.colonLabel.Size = new System.Drawing.Size(13, 20);
             this.colonLabel.TabIndex = 13;
@@ -121,36 +125,16 @@
             // 
             // scoreTextBox2
             // 
-            this.scoreTextBox2.Location = new System.Drawing.Point(73, 131);
+            this.scoreTextBox2.Location = new System.Drawing.Point(19, 130);
             this.scoreTextBox2.Name = "scoreTextBox2";
             this.scoreTextBox2.Size = new System.Drawing.Size(32, 20);
             this.scoreTextBox2.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(17, 214);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 18);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Op";
-            // 
-            // teamsComboBox
-            // 
-            this.teamsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.teamsComboBox.FormattingEnabled = true;
-            this.teamsComboBox.ItemHeight = 13;
-            this.teamsComboBox.Location = new System.Drawing.Point(20, 235);
-            this.teamsComboBox.Name = "teamsComboBox";
-            this.teamsComboBox.Size = new System.Drawing.Size(203, 21);
-            this.teamsComboBox.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 110);
+            this.label2.Location = new System.Drawing.Point(13, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 18);
             this.label2.TabIndex = 8;
@@ -173,7 +157,7 @@
             // 
             // scoreTextBox1
             // 
-            this.scoreTextBox1.Location = new System.Drawing.Point(20, 131);
+            this.scoreTextBox1.Location = new System.Drawing.Point(19, 85);
             this.scoreTextBox1.Name = "scoreTextBox1";
             this.scoreTextBox1.Size = new System.Drawing.Size(32, 20);
             this.scoreTextBox1.TabIndex = 4;
@@ -202,11 +186,11 @@
             // 
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(53, 19);
+            this.titleLabel.Location = new System.Drawing.Point(42, 19);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(146, 31);
+            this.titleLabel.Size = new System.Drawing.Size(194, 31);
             this.titleLabel.TabIndex = 1;
-            this.titleLabel.Text = "Gok Menu";
+            this.titleLabel.Text = "Gok Menu    | ";
             // 
             // newGameButton
             // 
@@ -229,6 +213,46 @@
             this.cheatPanel.Size = new System.Drawing.Size(78, 51);
             this.cheatPanel.TabIndex = 13;
             this.cheatPanel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cheatPanel_MouseDoubleClick);
+            // 
+            // balanceTitleLabel
+            // 
+            this.balanceTitleLabel.AutoSize = true;
+            this.balanceTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.balanceTitleLabel.Location = new System.Drawing.Point(16, 24);
+            this.balanceTitleLabel.Name = "balanceTitleLabel";
+            this.balanceTitleLabel.Size = new System.Drawing.Size(50, 18);
+            this.balanceTitleLabel.TabIndex = 18;
+            this.balanceTitleLabel.Text = "Saldo:";
+            // 
+            // balanceLabel
+            // 
+            this.balanceLabel.AutoSize = true;
+            this.balanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.balanceLabel.Location = new System.Drawing.Point(84, 24);
+            this.balanceLabel.Name = "balanceLabel";
+            this.balanceLabel.Size = new System.Drawing.Size(37, 18);
+            this.balanceLabel.TabIndex = 19;
+            this.balanceLabel.Text = "€0,-\r\n";
+            // 
+            // teamOneLabel
+            // 
+            this.teamOneLabel.AutoSize = true;
+            this.teamOneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamOneLabel.Location = new System.Drawing.Point(57, 88);
+            this.teamOneLabel.Name = "teamOneLabel";
+            this.teamOneLabel.Size = new System.Drawing.Size(46, 17);
+            this.teamOneLabel.TabIndex = 20;
+            this.teamOneLabel.Text = "label5";
+            // 
+            // teamTwoLabel
+            // 
+            this.teamTwoLabel.AutoSize = true;
+            this.teamTwoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamTwoLabel.Location = new System.Drawing.Point(59, 131);
+            this.teamTwoLabel.Name = "teamTwoLabel";
+            this.teamTwoLabel.Size = new System.Drawing.Size(46, 17);
+            this.teamTwoLabel.TabIndex = 21;
+            this.teamTwoLabel.Text = "label5";
             // 
             // BetMenuForm
             // 
@@ -259,8 +283,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button betButton;
         private System.Windows.Forms.TextBox scoreTextBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox teamsComboBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button newGameButton;
         private System.Windows.Forms.TextBox scoreTextBox2;
@@ -270,5 +292,9 @@
         private System.Windows.Forms.Panel cheatPanel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox matchComboBox;
+        private System.Windows.Forms.Label balanceLabel;
+        private System.Windows.Forms.Label balanceTitleLabel;
+        private System.Windows.Forms.Label teamTwoLabel;
+        private System.Windows.Forms.Label teamOneLabel;
     }
 }

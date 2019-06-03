@@ -35,12 +35,7 @@ namespace FifaProject
         private void Initialize()
         {
             // Leeg eerst de comboboxes
-            teamsComboBox.Items.Clear();
             matchComboBox.Items.Clear();
-
-            // Stop de teams uit deze ronde in teamsComboBox
-            teamsComboBox.Items.Add(TeamOne);
-            teamsComboBox.Items.Add(TeamTwo);
 
             // Stop een lijst van matches in matchComboBox    
 
@@ -79,6 +74,12 @@ namespace FifaProject
             
             FindTeams();
             Initialize();
+
+            // Sets the labels
+            balanceLabel.Text = $"€{activeBettor.Cash},-";
+            titleLabel.Text += $"   Gokker: {activeBettor.Name}";
+            teamOneLabel.Text = TeamOne;
+            teamTwoLabel.Text = TeamTwo;
         }
 
         /// <summary>
@@ -96,6 +97,10 @@ namespace FifaProject
                 if (saveJson != "")
                 {
                     BettorList = JsonConvert.DeserializeObject<List<Bettor>>(saveJson);
+                }
+                else
+                {
+                    BettorList = new List<Bettor>();
                 }
             }
             catch (System.IO.FileNotFoundException)
@@ -148,7 +153,7 @@ namespace FifaProject
 
                             if ($"{record.firstscore}-{record.secondscore}" == match.Score) // When the score is correct
                             {
-                                int moneyWon = match.CurrentBet * 2;
+                                int moneyWon = match.CurrentBet * 3;
 
                                 activeBettor.Cash += moneyWon;
 
@@ -160,11 +165,48 @@ namespace FifaProject
                             }
                             else if ($"{record.firstscore}-{record.secondscore}" != match.Score) // When the score is not correct
                             {
-                                message = $"Volgende keer beter! Uw heeft {match.CurrentBet} verloren op de wedstrijd {match.MatchName}.";
-                                title = "Jammer!";
-                                MessageBox.Show(message, title);
+                                if (record.firstscore > record.secondscore)
+                                {
+                                    string[] scores = match.Score.Split('-');
 
-                                match.ResetValues();
+                                    if (int.Parse(scores[0]) > int.Parse(scores[1]))
+                                    {
+                                        int moneyWon = match.CurrentBet * 2;
+
+                                        activeBettor.Cash += moneyWon;
+
+                                        message = $"Gefeliciteerd! Uw heeft {moneyWon} gewonnen op de wedstrijd {match.MatchName}.";
+                                        title = "Gewonnen!";
+                                        MessageBox.Show(message, title);
+
+                                        match.ResetValues();
+                                    }
+                                }
+                                else if (record.firstscore < record.secondscore)
+                                {
+                                    string[] scores = match.Score.Split('-');
+
+                                    if (int.Parse(scores[0]) < int.Parse(scores[1]))
+                                    {
+                                        int moneyWon = match.CurrentBet * 2;
+
+                                        activeBettor.Cash += moneyWon;
+
+                                        message = $"Gefeliciteerd! Uw heeft {moneyWon} gewonnen op de wedstrijd {match.MatchName}.";
+                                        title = "Gewonnen!";
+                                        MessageBox.Show(message, title);
+
+                                        match.ResetValues();
+                                    }
+                                }
+                                else
+                                {
+                                    message = $"Volgende keer beter! Uw heeft {match.CurrentBet} verloren op de wedstrijd {match.MatchName}.";
+                                    title = "Jammer!";
+                                    MessageBox.Show(message, title);
+
+                                    match.ResetValues();
+                                }
                             }
                         }
                     }
@@ -177,6 +219,7 @@ namespace FifaProject
             }
 
             savingGame(SaveLocation);
+            balanceLabel.Text = $"€{activeBettor.Cash},-"; // Update balance label
         }
 
         private void betButton_Click(object sender, EventArgs e)
@@ -184,7 +227,7 @@ namespace FifaProject
             string scoreTeam1 = "";
             string scoreTeam2 = "";
 
-            if (String.IsNullOrEmpty(scoreTextBox1.Text) || String.IsNullOrEmpty(scoreTextBox2.Text) || String.IsNullOrEmpty(euroTextBox.Text) || String.IsNullOrEmpty(teamsComboBox.Text))
+            if (String.IsNullOrEmpty(scoreTextBox1.Text) || String.IsNullOrEmpty(scoreTextBox2.Text) || String.IsNullOrEmpty(euroTextBox.Text))
             {
                 MessageBox.Show("Vul eerst het formulier in!");
 
@@ -198,8 +241,7 @@ namespace FifaProject
                 scoreTeam1 = scoreTextBox1.Text;
                 scoreTeam2 = scoreTextBox2.Text;
 
-                int cash = int.Parse(euroTextBox.Text);                                  
-                string winningTeam = teamsComboBox.Text;
+                int cash = int.Parse(euroTextBox.Text);       
 
                 // When bettor has not enough cash for the bet.
                 if (activeBettor.Cash - cash < 0)
@@ -213,23 +255,23 @@ namespace FifaProject
                 }
 
                 // Set bet and bet message
-                string listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text),
-                    teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
+                string listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text), 
+                    $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
 
-                activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), teamsComboBox.Text, $"{scoreTeam1}-{scoreTeam2}", listMessage);
+                activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), $"{scoreTeam1}-{scoreTeam2}", listMessage);
 
                 bettorListTextBox.Text += listMessage;
 
                 // Resets textboxes
                 scoreTextBox1.Text = "";
                 scoreTextBox2.Text = "";
-                teamsComboBox.Text = "";
                 euroTextBox.Text = "";
 
                 Initialize();
             }
 
             savingGame(SaveLocation);
+            balanceLabel.Text = $"€{activeBettor.Cash},-"; // Update balance label
         }
 
         public void savingGame(string saveLocation)
@@ -244,7 +286,6 @@ namespace FifaProject
             bettorListTextBox.Text = "";
             scoreTextBox1.Text = "";
             scoreTextBox2.Text = "";
-            teamsComboBox.Text = "";
             euroTextBox.Text = "";
             BettorList = new List<Bettor>();
             
