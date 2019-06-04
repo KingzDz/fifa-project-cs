@@ -15,7 +15,7 @@ namespace FifaProject
     public partial class UserForm : Form
     {
         public Bettor bettor;
-        public string saveLocation;
+        public string saveLocation = "fifa-save.json";
         public List<Bettor> bettorList;
 
         public UserForm()

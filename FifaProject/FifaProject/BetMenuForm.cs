@@ -337,5 +337,16 @@ namespace FifaProject
         {
             fetchCompetitionScores();
         }
+
+        private void switchBettorButton_Click(object sender, EventArgs e)
+        {
+            savingGame(SaveLocation);
+
+            this.Close();
+            BetMenuForm betForm = new BetMenuForm();
+            betForm.Schedule = Schedule;
+            betForm.Show();
+
+        }
     }
 }

@@ -47,12 +47,14 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.newGameButton = new System.Windows.Forms.Button();
             this.cheatPanel = new System.Windows.Forms.Panel();
+            this.switchBettorButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.switchBettorButton);
             this.panel1.Controls.Add(this.teamTwoLabel);
             this.panel1.Controls.Add(this.teamOneLabel);
             this.panel1.Controls.Add(this.balanceLabel);
@@ -100,7 +102,7 @@
             // 
             this.balanceLabel.AutoSize = true;
             this.balanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.balanceLabel.Location = new System.Drawing.Point(120, 33);
+            this.balanceLabel.Location = new System.Drawing.Point(116, 70);
             this.balanceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.balanceLabel.Name = "balanceLabel";
             this.balanceLabel.Size = new System.Drawing.Size(45, 24);
@@ -111,7 +113,7 @@
             // 
             this.balanceTitleLabel.AutoSize = true;
             this.balanceTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.balanceTitleLabel.Location = new System.Drawing.Point(29, 33);
+            this.balanceTitleLabel.Location = new System.Drawing.Point(25, 70);
             this.balanceTitleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.balanceTitleLabel.Name = "balanceTitleLabel";
             this.balanceTitleLabel.Size = new System.Drawing.Size(63, 24);
@@ -271,6 +273,21 @@
             this.cheatPanel.TabIndex = 13;
             this.cheatPanel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cheatPanel_MouseDoubleClick);
             // 
+            // switchBettorButton
+            // 
+            this.switchBettorButton.BackColor = System.Drawing.Color.Black;
+            this.switchBettorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.switchBettorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.switchBettorButton.ForeColor = System.Drawing.Color.White;
+            this.switchBettorButton.Location = new System.Drawing.Point(27, 30);
+            this.switchBettorButton.Margin = new System.Windows.Forms.Padding(40, 25, 80, 25);
+            this.switchBettorButton.Name = "switchBettorButton";
+            this.switchBettorButton.Size = new System.Drawing.Size(271, 29);
+            this.switchBettorButton.TabIndex = 22;
+            this.switchBettorButton.Text = "Verander Gokker";
+            this.switchBettorButton.UseVisualStyleBackColor = false;
+            this.switchBettorButton.Click += new System.EventHandler(this.switchBettorButton_Click);
+            // 
             // BetMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -314,5 +331,6 @@
         private System.Windows.Forms.Label balanceTitleLabel;
         private System.Windows.Forms.Label teamTwoLabel;
         private System.Windows.Forms.Label teamOneLabel;
+        private System.Windows.Forms.Button switchBettorButton;
     }
 }
