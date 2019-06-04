@@ -48,12 +48,14 @@
             this.newGameButton = new System.Windows.Forms.Button();
             this.cheatPanel = new System.Windows.Forms.Panel();
             this.switchBettorButton = new System.Windows.Forms.Button();
+            this.payoutButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.payoutButton);
             this.panel1.Controls.Add(this.switchBettorButton);
             this.panel1.Controls.Add(this.teamTwoLabel);
             this.panel1.Controls.Add(this.teamOneLabel);
@@ -282,11 +284,26 @@
             this.switchBettorButton.Location = new System.Drawing.Point(27, 30);
             this.switchBettorButton.Margin = new System.Windows.Forms.Padding(40, 25, 80, 25);
             this.switchBettorButton.Name = "switchBettorButton";
-            this.switchBettorButton.Size = new System.Drawing.Size(271, 29);
+            this.switchBettorButton.Size = new System.Drawing.Size(148, 29);
             this.switchBettorButton.TabIndex = 22;
             this.switchBettorButton.Text = "Verander Gokker";
             this.switchBettorButton.UseVisualStyleBackColor = false;
             this.switchBettorButton.Click += new System.EventHandler(this.switchBettorButton_Click);
+            // 
+            // payoutButton
+            // 
+            this.payoutButton.BackColor = System.Drawing.Color.Black;
+            this.payoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.payoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.payoutButton.ForeColor = System.Drawing.Color.White;
+            this.payoutButton.Location = new System.Drawing.Point(185, 30);
+            this.payoutButton.Margin = new System.Windows.Forms.Padding(40, 25, 80, 25);
+            this.payoutButton.Name = "payoutButton";
+            this.payoutButton.Size = new System.Drawing.Size(113, 29);
+            this.payoutButton.TabIndex = 23;
+            this.payoutButton.Text = "Uitbetalen";
+            this.payoutButton.UseVisualStyleBackColor = false;
+            this.payoutButton.Click += new System.EventHandler(this.payoutButton_Click);
             // 
             // BetMenuForm
             // 
@@ -332,5 +349,6 @@
         private System.Windows.Forms.Label teamTwoLabel;
         private System.Windows.Forms.Label teamOneLabel;
         private System.Windows.Forms.Button switchBettorButton;
+        private System.Windows.Forms.Button payoutButton;
     }
 }

@@ -130,18 +130,28 @@ namespace FifaProject
         }
 
         /// <summary>
+        /// Returns true if the match has already happened and results are in
+        /// </summary>
+        //private bool IsMatchOver()
+        //{
+        //    if (fetchedScores.Records[MatchId] != null && activeBettor.MatchesBetOn.Any() == true)
+        //    {
+
+        //    }
+        //}
+
+        /// <summary>
         /// Checks if there are scores available for the competition.
         /// </summary>
         public void fetchCompetitionScores()
         {
             FetchScores(); // Fetches the scores from the API
 
-            if (fetchedScores.Records[0] != null && activeBettor.MatchesBetOn.Any() == true) // When there are scores available
+            if (fetchedScores.Records[MatchId] != null && activeBettor.MatchesBetOn.Any() == true) // When there are scores available
             {
-                string message = "Er zijn nieuwe scores beschikbaar. Kijk op je gewonnen hebt!";
-                string title = "Scores beschikbaar.";
-                MessageBox.Show(message, title);
-                
+                string message;
+                string title;
+                             
                 int i = 0;
                 foreach (Bettor.Matches match in activeBettor.MatchesBetOn)
                 {
@@ -163,6 +173,7 @@ namespace FifaProject
                                 MessageBox.Show(message, title);
 
                                 match.ResetValues();
+                                bettorListTextBox.Text = "";
                             }
                             else if ($"{record.firstscore}-{record.secondscore}" != match.Score) // When the score is not correct
                             {
@@ -182,6 +193,7 @@ namespace FifaProject
                                         MessageBox.Show(message, title);
 
                                         match.ResetValues();
+                                        bettorListTextBox.Text = "";
                                     }
                                 }
                                 else if (record.firstscore < record.secondscore)
@@ -198,6 +210,7 @@ namespace FifaProject
                                         MessageBox.Show(message, title);
 
                                         match.ResetValues();
+                                        bettorListTextBox.Text = "";
                                     }
                                 }
                                 else
@@ -207,6 +220,7 @@ namespace FifaProject
                                     MessageBox.Show(message, title);
 
                                     match.ResetValues();
+                                    bettorListTextBox.Text = "";
                                 }
                             }
                         }
@@ -218,7 +232,10 @@ namespace FifaProject
                 // Deletes all the empty bets from the list
                 activeBettor.MatchesBetOn.RemoveAll(r => r.MatchName == null);
             }
-
+            else
+            {
+                MessageBox.Show("Er zijn nog geen scores voor deze ronde!");
+            }
             savingGame(SaveLocation);
             balanceLabel.Text = $"€{activeBettor.Cash},-"; // Update balance label
         }
@@ -357,7 +374,7 @@ namespace FifaProject
 
         private void BetMenuForm_Shown(object sender, EventArgs e)
         {
-            fetchCompetitionScores();
+            //fetchCompetitionScores();
         }
 
         private void switchBettorButton_Click(object sender, EventArgs e)
@@ -369,6 +386,11 @@ namespace FifaProject
             betForm.Schedule = Schedule;
             betForm.Show();
 
+        }
+
+        private void payoutButton_Click(object sender, EventArgs e)
+        {
+            fetchCompetitionScores();
         }
     }
 }
