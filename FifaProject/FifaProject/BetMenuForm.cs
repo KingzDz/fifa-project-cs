@@ -328,6 +328,8 @@ namespace FifaProject
                 }
             }
             FindTeams();
+            teamOneLabel.Text = TeamOne;
+            teamTwoLabel.Text = TeamTwo;
             Initialize();
         }
 

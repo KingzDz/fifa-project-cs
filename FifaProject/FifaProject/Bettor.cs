@@ -55,10 +55,5 @@ namespace FifaProject
             
             MatchesBetOn.Add(NewMatch);
         }
-
-        public void Payout(bool betWon)
-        {
-
-        }
     }
 }
