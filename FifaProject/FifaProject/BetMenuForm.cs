@@ -21,7 +21,8 @@ namespace FifaProject
         public string TeamOne;
         public string TeamTwo;
         public Bettor activeBettor;
-        public string Format = "{0} wed {1} euro op {2} met {3} als eindstand. | {4} euro \n";
+        public string Format = "{0} wed {1} euro dat {2} wint met {3} als eindstand. | {4} euro \n";
+        string listMessage;
 
         public string SaveLocation = "fifa-save.json";
 
@@ -255,10 +256,31 @@ namespace FifaProject
                 }
 
                 // Set bet and bet message
-                string listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text), 
+                
+                if (int.Parse(scoreTeam1) > int.Parse(scoreTeam2))
+                {
+                    listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text),
+                    TeamOne, $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
+
+                    activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), TeamOne, $"{scoreTeam1}-{scoreTeam2}", listMessage);
+                }
+                else if(int.Parse(scoreTeam1) < int.Parse(scoreTeam2))
+                {
+                    listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text),
+                    TeamTwo, $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
+
+                    activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), TeamTwo, $"{scoreTeam1}-{scoreTeam2}", listMessage);
+                }
+                else
+                {
+                    Format = "{0} wed {1} euro op een gelijk spel met {2} als eindstand. | {3} euro \n";
+
+                    listMessage = string.Format(Format, activeBettor.Name, int.Parse(euroTextBox.Text),
                     $"{scoreTeam1}-{scoreTeam2}", activeBettor.Cash);
 
-                activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), $"{scoreTeam1}-{scoreTeam2}", listMessage);
+                    activeBettor.SetBet(Schedule[MatchId], int.Parse(euroTextBox.Text), "Gelijkspel", $"{scoreTeam1}-{scoreTeam2}", listMessage);
+
+                }
 
                 bettorListTextBox.Text += listMessage;
 

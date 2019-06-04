@@ -21,7 +21,7 @@ namespace FifaProject
             public string Score { get; set; }
             public string ListMessage { get; set; }
 
-            public Matches(string name, int cb, string score, string lm)
+            public Matches(string name, int cb, string wt,string score, string lm)
             {
                 MatchName = name;
                 CurrentBet = cb;
@@ -49,9 +49,9 @@ namespace FifaProject
             MatchesBetOn = new List<Matches>();
         }
 
-        public void SetBet(string name, int cb, string score, string lm)
+        public void SetBet(string name, int cb, string wt, string score, string lm)
         {
-            Matches NewMatch = new Matches(name, cb, score, lm);
+            Matches NewMatch = new Matches(name, cb, wt, score, lm);
             
             MatchesBetOn.Add(NewMatch);
         }
