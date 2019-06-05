@@ -132,13 +132,18 @@ namespace FifaProject
         /// <summary>
         /// Returns true if the match has already happened and results are in
         /// </summary>
-        //private bool IsMatchOver()
-        //{
-        //    if (fetchedScores.Records[MatchId] != null && activeBettor.MatchesBetOn.Any() == true)
-        //    {
-
-        //    }
-        //}
+        private bool IsMatchOver()
+        {
+            FetchScores();
+            if (fetchedScores.Records.Count > MatchId)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Checks if there are scores available for the competition.
@@ -147,7 +152,7 @@ namespace FifaProject
         {
             FetchScores(); // Fetches the scores from the API
 
-            if (fetchedScores.Records[MatchId] != null && activeBettor.MatchesBetOn.Any() == true) // When there are scores available
+            if (fetchedScores.Records.Count > MatchId && activeBettor.MatchesBetOn.Any() == true) // When there are scores available
             {
                 string message;
                 string title;
@@ -179,39 +184,31 @@ namespace FifaProject
                             {
                                 string[] scores = match.Score.Split('-'); // Splits match scores to array
 
-                                if (record.firstscore > record.secondscore)
+                                if (record.firstscore > record.secondscore && int.Parse(scores[0]) > int.Parse(scores[1]))
                                 {
+                                    int moneyWon = match.CurrentBet * 2;
 
-                                    if (int.Parse(scores[0]) > int.Parse(scores[1]))
-                                    {
-                                        int moneyWon = match.CurrentBet * 2;
+                                    activeBettor.Cash += moneyWon;
 
-                                        activeBettor.Cash += moneyWon;
+                                    message = $"Gefeliciteerd! Uw heeft {moneyWon} gewonnen op de wedstrijd {match.MatchName}.";
+                                    title = "Gewonnen!";
+                                    MessageBox.Show(message, title);
 
-                                        message = $"Gefeliciteerd! Uw heeft {moneyWon} gewonnen op de wedstrijd {match.MatchName}.";
-                                        title = "Gewonnen!";
-                                        MessageBox.Show(message, title);
-
-                                        match.ResetValues();
-                                        bettorListTextBox.Text = "";
-                                    }
+                                    match.ResetValues();
+                                    bettorListTextBox.Text = "";
                                 }
-                                else if (record.firstscore < record.secondscore)
+                                else if (record.firstscore < record.secondscore && int.Parse(scores[0]) < int.Parse(scores[1]))
                                 {
+                                    int moneyWon = match.CurrentBet * 2;
 
-                                    if (int.Parse(scores[0]) < int.Parse(scores[1]))
-                                    {
-                                        int moneyWon = match.CurrentBet * 2;
+                                    activeBettor.Cash += moneyWon;
 
-                                        activeBettor.Cash += moneyWon;
+                                    message = $"Gefeliciteerd! Uw heeft {moneyWon} gewonnen op de wedstrijd {match.MatchName}.";
+                                    title = "Gewonnen!";
+                                    MessageBox.Show(message, title);
 
-                                        message = $"Gefeliciteerd! Uw heeft {moneyWon} gewonnen op de wedstrijd {match.MatchName}.";
-                                        title = "Gewonnen!";
-                                        MessageBox.Show(message, title);
-
-                                        match.ResetValues();
-                                        bettorListTextBox.Text = "";
-                                    }
+                                    match.ResetValues();
+                                    bettorListTextBox.Text = "";
                                 }
                                 else
                                 {
@@ -234,7 +231,7 @@ namespace FifaProject
             }
             else
             {
-                MessageBox.Show("Er zijn nog geen scores voor deze ronde!");
+                MessageBox.Show("Er zijn nog geen scores voor deze ronde. Of u moet nog een weddenschap plaatsen.");
             }
             savingGame(SaveLocation);
             balanceLabel.Text = $"€{activeBettor.Cash},-"; // Update balance label
@@ -259,7 +256,14 @@ namespace FifaProject
                 scoreTeam1 = scoreTextBox1.Text;
                 scoreTeam2 = scoreTextBox2.Text;
 
-                int cash = int.Parse(euroTextBox.Text);       
+                int cash = int.Parse(euroTextBox.Text);
+
+                // When match has already happened.
+                if (IsMatchOver() == true)
+                {
+                    MessageBox.Show("Sorry, deze wedstrijd is al gespeeld.");
+                    return;
+                }
 
                 // When bettor has not enough cash for the bet.
                 if (activeBettor.Cash - cash < 0)
