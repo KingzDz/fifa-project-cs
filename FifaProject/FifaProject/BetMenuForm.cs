@@ -81,6 +81,13 @@ namespace FifaProject
             titleLabel.Text += $"   Gokker: {activeBettor.Name}";
             teamOneLabel.Text = TeamOne;
             teamTwoLabel.Text = TeamTwo;
+            listLabel.Text = "Kies een ronde om te beginnen!";
+
+            // disables all user input. (until match is selected)
+            betButton.Enabled = false;
+            scoreTextBox1.Enabled = false;
+            scoreTextBox2.Enabled = false;
+            euroTextBox.Enabled = false;
         }
 
         /// <summary>
@@ -129,21 +136,7 @@ namespace FifaProject
             }
         }
 
-        /// <summary>
-        /// Returns true if the match has already happened and results are in
-        /// </summary>
-        private bool IsMatchOver()
-        {
-            FetchScores();
-            if (fetchedScores.Records.Count > MatchId)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+       
 
         /// <summary>
         /// Checks if there are scores available for the competition.
@@ -152,7 +145,7 @@ namespace FifaProject
         {
             FetchScores(); // Fetches the scores from the API
 
-            if (fetchedScores.Records.Count > MatchId && activeBettor.MatchesBetOn.Any() == true) // When there are scores available
+            if (activeBettor.MatchesBetOn.Any() == true) // When there are scores available
             {
                 string message;
                 string title;
@@ -259,11 +252,7 @@ namespace FifaProject
                 int cash = int.Parse(euroTextBox.Text);
 
                 // When match has already happened.
-                if (IsMatchOver() == true)
-                {
-                    MessageBox.Show("Sorry, deze wedstrijd is al gespeeld.");
-                    return;
-                }
+                
 
                 // When bettor has not enough cash for the bet.
                 if (activeBettor.Cash - cash < 0)
@@ -353,6 +342,34 @@ namespace FifaProject
             savingGame(SaveLocation);
         }
 
+        /// <summary>
+        /// Disables user input if the selected match has already been played.
+        /// </summary>
+        private void IsMatchOver()
+        {
+            FetchScores();
+
+            betButton.Enabled = true;
+            scoreTextBox1.Enabled = true;
+            scoreTextBox2.Enabled = true;
+            euroTextBox.Enabled = true;
+
+            listLabel.Text = "Gokkers die op deze ronde wedden";
+            for (int i = 0; i < fetchedScores.Records.Count; i++)
+            {
+                string format = "{0} - {1}";
+                string match = string.Format(format, fetchedScores.Records[i].firstteam, fetchedScores.Records[i].secondteam);
+                if (match == matchComboBox.Text)
+                {
+                    betButton.Enabled = false;
+                    scoreTextBox1.Enabled = false;
+                    scoreTextBox2.Enabled = false;
+                    euroTextBox.Enabled = false;
+                    listLabel.Text = "Deze ronde is al gespeeld. Kies een andere!";
+                }
+            }
+        }
+
         private void matchComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             MatchId = matchComboBox.SelectedIndex;
@@ -370,6 +387,9 @@ namespace FifaProject
 
                 }
             }
+
+            IsMatchOver();
+
             FindTeams();
             teamOneLabel.Text = TeamOne;
             teamTwoLabel.Text = TeamTwo;
