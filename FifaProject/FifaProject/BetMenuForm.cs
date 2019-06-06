@@ -65,6 +65,16 @@ namespace FifaProject
             fetchedScores = JsonConvert.DeserializeObject<FetchScores.RootObject>(json);
         }
 
+        private void OpenNewForm()
+        {
+            savingGame(SaveLocation);
+
+            this.Close();
+            BetMenuForm betForm = new BetMenuForm();
+            betForm.Schedule = Schedule;
+            betForm.Show();
+        }
+
         private void BetMenuForm_Load(object sender, EventArgs e)
         {
             getSaveGame(SaveLocation);
@@ -81,7 +91,7 @@ namespace FifaProject
             titleLabel.Text += $"   Gokker: {activeBettor.Name}";
             teamOneLabel.Text = TeamOne;
             teamTwoLabel.Text = TeamTwo;
-            listLabel.Text = "Kies een ronde om te beginnen!";
+            infoLabel.Text = "Kies een ronde om te beginnen!";
 
             // disables all user input. (until match is selected)
             betButton.Enabled = false;
@@ -315,12 +325,14 @@ namespace FifaProject
         private void newGameButton_Click(object sender, EventArgs e)
         {
             File.WriteAllText(SaveLocation, "");
-            bettorListTextBox.Text = "";
-            scoreTextBox1.Text = "";
-            scoreTextBox2.Text = "";
-            euroTextBox.Text = "";
             BettorList = new List<Bettor>();
-            
+            savingGame(SaveLocation);
+
+            this.Close();
+            BetMenuForm betForm = new BetMenuForm();
+            betForm.Schedule = Schedule;
+            betForm.Show();
+
         }
 
         private void cheatPanel_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -354,7 +366,7 @@ namespace FifaProject
             scoreTextBox2.Enabled = true;
             euroTextBox.Enabled = true;
 
-            listLabel.Text = "Gokkers die op deze ronde wedden";
+            infoLabel.Text = "Gokkers die op deze ronde wedden";
             for (int i = 0; i < fetchedScores.Records.Count; i++)
             {
                 string format = "{0} - {1}";
@@ -365,7 +377,7 @@ namespace FifaProject
                     scoreTextBox1.Enabled = false;
                     scoreTextBox2.Enabled = false;
                     euroTextBox.Enabled = false;
-                    listLabel.Text = "Deze ronde is al gespeeld. Kies een andere!";
+                    infoLabel.Text = "Deze ronde is al gespeeld. Kies een andere!";
                 }
             }
         }
@@ -396,19 +408,9 @@ namespace FifaProject
             Initialize();
         }
 
-        private void BetMenuForm_Shown(object sender, EventArgs e)
-        {
-            //fetchCompetitionScores();
-        }
-
         private void switchBettorButton_Click(object sender, EventArgs e)
         {
-            savingGame(SaveLocation);
-
-            this.Close();
-            BetMenuForm betForm = new BetMenuForm();
-            betForm.Schedule = Schedule;
-            betForm.Show();
+            OpenNewForm();
 
         }
 

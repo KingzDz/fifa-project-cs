@@ -44,7 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.betButton = new System.Windows.Forms.Button();
             this.scoreTextBox1 = new System.Windows.Forms.TextBox();
-            this.listLabel = new System.Windows.Forms.Label();
+            this.infoLabel = new System.Windows.Forms.Label();
             this.bettorListTextBox = new System.Windows.Forms.RichTextBox();
             this.titleLabel = new System.Windows.Forms.Label();
             this.newGameButton = new System.Windows.Forms.Button();
@@ -54,6 +54,9 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.payoutButton);
             this.panel1.Controls.Add(this.switchBettorButton);
@@ -70,7 +73,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.betButton);
             this.panel1.Controls.Add(this.scoreTextBox1);
-            this.panel1.Controls.Add(this.listLabel);
+            this.panel1.Controls.Add(this.infoLabel);
             this.panel1.Controls.Add(this.bettorListTextBox);
             this.panel1.Location = new System.Drawing.Point(39, 65);
             this.panel1.Margin = new System.Windows.Forms.Padding(27, 25, 27, 25);
@@ -166,6 +169,8 @@
             // 
             // matchComboBox
             // 
+            this.matchComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.matchComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.matchComboBox.FormattingEnabled = true;
             this.matchComboBox.ItemHeight = 16;
@@ -227,6 +232,8 @@
             // 
             // betButton
             // 
+            this.betButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.betButton.BackColor = System.Drawing.Color.Black;
             this.betButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.betButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -248,19 +255,22 @@
             this.scoreTextBox1.Size = new System.Drawing.Size(41, 22);
             this.scoreTextBox1.TabIndex = 4;
             // 
-            // listLabel
+            // infoLabel
             // 
-            this.listLabel.AutoSize = true;
-            this.listLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listLabel.Location = new System.Drawing.Point(317, 76);
-            this.listLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.listLabel.Name = "listLabel";
-            this.listLabel.Size = new System.Drawing.Size(243, 18);
-            this.listLabel.TabIndex = 4;
-            this.listLabel.Text = "Gokkers die op deze ronde wedden";
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoLabel.Location = new System.Drawing.Point(317, 76);
+            this.infoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(243, 18);
+            this.infoLabel.TabIndex = 4;
+            this.infoLabel.Text = "Gokkers die op deze ronde wedden";
             // 
             // bettorListTextBox
             // 
+            this.bettorListTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bettorListTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bettorListTextBox.Location = new System.Drawing.Point(321, 98);
             this.bettorListTextBox.Margin = new System.Windows.Forms.Padding(4);
@@ -283,6 +293,7 @@
             // 
             // newGameButton
             // 
+            this.newGameButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.newGameButton.BackColor = System.Drawing.Color.White;
             this.newGameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -319,7 +330,6 @@
             this.Name = "BetMenuForm";
             this.Text = "BetMenuForm";
             this.Load += new System.EventHandler(this.BetMenuForm_Load);
-            this.Shown += new System.EventHandler(this.BetMenuForm_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -332,7 +342,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.RichTextBox bettorListTextBox;
-        private System.Windows.Forms.Label listLabel;
+        private System.Windows.Forms.Label infoLabel;
         private System.Windows.Forms.Button betButton;
         private System.Windows.Forms.TextBox scoreTextBox1;
         private System.Windows.Forms.Label label2;
