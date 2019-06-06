@@ -314,6 +314,13 @@ namespace FifaProject
 
             savingGame(SaveLocation);
             balanceLabel.Text = $"€{activeBettor.Cash},-"; // Update balance label
+
+            // ends the match.
+            betButton.Enabled = false;
+            scoreTextBox1.Enabled = false;
+            scoreTextBox2.Enabled = false;
+            euroTextBox.Enabled = false;
+            infoLabel.Text = "Deze ronde is al gespeeld. Kies een andere!";
         }
 
         public void savingGame(string saveLocation)
