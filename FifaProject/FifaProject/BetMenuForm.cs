@@ -266,9 +266,6 @@ namespace FifaProject
 
                 int cash = int.Parse(euroTextBox.Text);
 
-                // When match has already happened.
-                
-
                 // When bettor has not enough cash for the bet.
                 if (activeBettor.Cash - cash < 0)
                 {
@@ -320,12 +317,12 @@ namespace FifaProject
             savingGame(SaveLocation);
             balanceLabel.Text = $"€{activeBettor.Cash},-"; // Update balance label
 
-            // ends the match.
+            // disables user input to prevent betting twice on the same match
             betButton.Enabled = false;
             scoreTextBox1.Enabled = false;
             scoreTextBox2.Enabled = false;
             euroTextBox.Enabled = false;
-            infoLabel.Text = "Deze ronde is al gespeeld. Kies een andere!";
+            infoLabel.Text = "Je weddenschap is geplaats";
         }
 
         public void savingGame(string saveLocation)
@@ -409,18 +406,21 @@ namespace FifaProject
                     {
                         bettorListTextBox.Text += BettorList[i].MatchesBetOn[o].ListMessage;
                     }
-                    if (bettorListTextBox.Text.Contains(BettorList[i].MatchesBetOn[o].ListMessage))
-                    {
-                        betButton.Enabled = false;
-                        scoreTextBox1.Enabled = false;
-                        scoreTextBox2.Enabled = false;
-                        euroTextBox.Enabled = false;
-                        infoLabel.Text = "Je hebt al een weddenschap op deze ronde!";
-                    }
 
                 }
             }
+            for (int i = 0; i < activeBettor.MatchesBetOn.Count; i++)
+            {
+                if (bettorListTextBox.Text.Contains(activeBettor.MatchesBetOn[i].ListMessage))
+                {
+                    betButton.Enabled = false;
+                    scoreTextBox1.Enabled = false;
+                    scoreTextBox2.Enabled = false;
+                    euroTextBox.Enabled = false;
+                    infoLabel.Text = "Je hebt al een weddenschap op deze ronde!";
+                }
 
+            }
             FindTeams();
             teamOneLabel.Text = TeamOne;
             teamTwoLabel.Text = TeamTwo;

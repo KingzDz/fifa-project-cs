@@ -47,7 +47,7 @@
             // 
             this.matchsTitleLabel.AutoSize = true;
             this.matchsTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.matchsTitleLabel.Location = new System.Drawing.Point(218, 48);
+            this.matchsTitleLabel.Location = new System.Drawing.Point(208, 9);
             this.matchsTitleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.matchsTitleLabel.Name = "matchsTitleLabel";
             this.matchsTitleLabel.Size = new System.Drawing.Size(168, 31);
@@ -66,17 +66,17 @@
             this.betPanel.Controls.Add(this.scheduleButton);
             this.betPanel.Controls.Add(this.betMenuButton);
             this.betPanel.Controls.Add(this.refreshButton);
-            this.betPanel.Location = new System.Drawing.Point(79, 105);
-            this.betPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.betPanel.Location = new System.Drawing.Point(39, 44);
+            this.betPanel.Margin = new System.Windows.Forms.Padding(30);
             this.betPanel.Name = "betPanel";
-            this.betPanel.Size = new System.Drawing.Size(451, 395);
+            this.betPanel.Size = new System.Drawing.Size(529, 456);
             this.betPanel.TabIndex = 2;
             // 
             // matchLabel
             // 
             this.matchLabel.AutoSize = true;
             this.matchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.matchLabel.Location = new System.Drawing.Point(30, 223);
+            this.matchLabel.Location = new System.Drawing.Point(65, 257);
             this.matchLabel.Name = "matchLabel";
             this.matchLabel.Size = new System.Drawing.Size(402, 32);
             this.matchLabel.TabIndex = 16;
@@ -87,7 +87,7 @@
             // 
             this.teamsLabel.AutoSize = true;
             this.teamsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamsLabel.Location = new System.Drawing.Point(30, 118);
+            this.teamsLabel.Location = new System.Drawing.Point(42, 110);
             this.teamsLabel.Name = "teamsLabel";
             this.teamsLabel.Size = new System.Drawing.Size(243, 32);
             this.teamsLabel.TabIndex = 15;
@@ -102,17 +102,18 @@
             this.matchComboBox.FormattingEnabled = true;
             this.matchComboBox.Location = new System.Drawing.Point(17, 18);
             this.matchComboBox.Name = "matchComboBox";
-            this.matchComboBox.Size = new System.Drawing.Size(308, 24);
+            this.matchComboBox.Size = new System.Drawing.Size(386, 24);
             this.matchComboBox.TabIndex = 14;
             this.matchComboBox.SelectedIndexChanged += new System.EventHandler(this.matchComboBox_SelectedIndexChanged);
             // 
             // scheduleButton
             // 
+            this.scheduleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.scheduleButton.BackColor = System.Drawing.Color.Black;
             this.scheduleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.scheduleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scheduleButton.ForeColor = System.Drawing.Color.White;
-            this.scheduleButton.Location = new System.Drawing.Point(17, 341);
+            this.scheduleButton.Location = new System.Drawing.Point(17, 404);
             this.scheduleButton.Margin = new System.Windows.Forms.Padding(4);
             this.scheduleButton.Name = "scheduleButton";
             this.scheduleButton.Size = new System.Drawing.Size(148, 34);
@@ -123,12 +124,12 @@
             // 
             // betMenuButton
             // 
-            this.betMenuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.betMenuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.betMenuButton.BackColor = System.Drawing.Color.Black;
             this.betMenuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.betMenuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.betMenuButton.ForeColor = System.Drawing.Color.White;
-            this.betMenuButton.Location = new System.Drawing.Point(305, 341);
+            this.betMenuButton.Location = new System.Drawing.Point(383, 404);
             this.betMenuButton.Margin = new System.Windows.Forms.Padding(4);
             this.betMenuButton.Name = "betMenuButton";
             this.betMenuButton.Size = new System.Drawing.Size(127, 34);
@@ -140,7 +141,7 @@
             // refreshButton
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.refreshButton.Location = new System.Drawing.Point(332, 18);
+            this.refreshButton.Location = new System.Drawing.Point(410, 18);
             this.refreshButton.Margin = new System.Windows.Forms.Padding(4);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(100, 28);

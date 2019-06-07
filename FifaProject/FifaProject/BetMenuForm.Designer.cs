@@ -85,12 +85,12 @@
             // 
             this.payoutButton.BackColor = System.Drawing.Color.Black;
             this.payoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.payoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.payoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.payoutButton.ForeColor = System.Drawing.Color.White;
-            this.payoutButton.Location = new System.Drawing.Point(185, 30);
+            this.payoutButton.Location = new System.Drawing.Point(197, 30);
             this.payoutButton.Margin = new System.Windows.Forms.Padding(40, 25, 80, 25);
             this.payoutButton.Name = "payoutButton";
-            this.payoutButton.Size = new System.Drawing.Size(113, 29);
+            this.payoutButton.Size = new System.Drawing.Size(101, 29);
             this.payoutButton.TabIndex = 23;
             this.payoutButton.Text = "Uitbetalen";
             this.payoutButton.UseVisualStyleBackColor = false;
@@ -100,12 +100,12 @@
             // 
             this.switchBettorButton.BackColor = System.Drawing.Color.Black;
             this.switchBettorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.switchBettorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.switchBettorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.switchBettorButton.ForeColor = System.Drawing.Color.White;
             this.switchBettorButton.Location = new System.Drawing.Point(27, 30);
             this.switchBettorButton.Margin = new System.Windows.Forms.Padding(40, 25, 80, 25);
             this.switchBettorButton.Name = "switchBettorButton";
-            this.switchBettorButton.Size = new System.Drawing.Size(148, 29);
+            this.switchBettorButton.Size = new System.Drawing.Size(166, 29);
             this.switchBettorButton.TabIndex = 22;
             this.switchBettorButton.Text = "Verander Gokker";
             this.switchBettorButton.UseVisualStyleBackColor = false;
