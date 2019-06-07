@@ -81,17 +81,24 @@ namespace FifaProject
 
             matchComboBox.SelectedItem = MatchId;
 
-            selectBettor(); // Chooses which bettor is active
-            
-            FindTeams();
-            Initialize();
+            try
+            {
+                selectBettor(); // Chooses which bettor is active
+                    
+                FindTeams();
+                Initialize();
 
-            // Sets the labels
-            balanceLabel.Text = $"€{activeBettor.Cash},-";
-            titleLabel.Text += $"   Gokker: {activeBettor.Name}";
-            teamOneLabel.Text = TeamOne;
-            teamTwoLabel.Text = TeamTwo;
-            infoLabel.Text = "Kies een ronde om te beginnen!";
+                // Sets the labels
+                balanceLabel.Text = $"€{activeBettor.Cash},-";
+                titleLabel.Text += $"   Gokker: {activeBettor.Name}";
+                teamOneLabel.Text = TeamOne;
+                teamTwoLabel.Text = TeamTwo;
+                infoLabel.Text = "Kies een ronde om te beginnen!";
+            }
+            catch (NullReferenceException)
+            {
+                this.Close();
+            }
 
             // disables all user input. (until match is selected)
             betButton.Enabled = false;
@@ -145,8 +152,6 @@ namespace FifaProject
                 return;
             }
         }
-
-       
 
         /// <summary>
         /// Checks if there are scores available for the competition.
