@@ -169,6 +169,11 @@ namespace FifaProject
 
                         if ($"{record.firstteam} - {record.secondteam}" == match.MatchName) // When the match is available
                         {
+                            betButton.Enabled = false;
+                            scoreTextBox1.Enabled = false;
+                            scoreTextBox2.Enabled = false;
+                            euroTextBox.Enabled = false;
+                            infoLabel.Text = "De ronde is nu afgelopen";
 
                             if ($"{record.firstscore}-{record.secondscore}" == match.Score) // When the score is correct
                             {
@@ -391,6 +396,7 @@ namespace FifaProject
 
         private void matchComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            IsMatchOver();
             MatchId = matchComboBox.SelectedIndex;
             bettorListTextBox.Text = "";
 
@@ -403,11 +409,17 @@ namespace FifaProject
                     {
                         bettorListTextBox.Text += BettorList[i].MatchesBetOn[o].ListMessage;
                     }
+                    if (bettorListTextBox.Text.Contains(BettorList[i].MatchesBetOn[o].ListMessage))
+                    {
+                        betButton.Enabled = false;
+                        scoreTextBox1.Enabled = false;
+                        scoreTextBox2.Enabled = false;
+                        euroTextBox.Enabled = false;
+                        infoLabel.Text = "Je hebt al een weddenschap op deze ronde!";
+                    }
 
                 }
             }
-
-            IsMatchOver();
 
             FindTeams();
             teamOneLabel.Text = TeamOne;
