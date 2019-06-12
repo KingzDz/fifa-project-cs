@@ -269,6 +269,7 @@ namespace FifaProject
                 scoreTeam1 = scoreTextBox1.Text;
                 scoreTeam2 = scoreTextBox2.Text;
 
+
                 int cash = int.Parse(euroTextBox.Text);
 
                 // When bettor has not enough cash for the bet.
